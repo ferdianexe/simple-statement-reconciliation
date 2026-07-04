@@ -2,9 +2,7 @@ package csv
 
 import (
 	"context"
-	"encoding/csv"
 	"fmt"
-	"io"
 	"os"
 	"strconv"
 	"strings"
@@ -16,32 +14,29 @@ const (
 	bankDateLayout   = "2006-01-02"
 )
 
-// ParseSystemTransactions reads the internal system transaction CSV file.
-func (svc *Repository) ParseSystemTransactions(ctx context.Context, path string) ([]Transaction, error) {
+// ParseSystemTransactions reads the internal system transaction CSV
+func (svc *Repository) ParseSystemTransactions(ctx context.Context, path string, start, end time.Time) ([]Transaction, error) {
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, fmt.Errorf("open system transactions file: %w", err)
 	}
 	defer f.Close()
 
-	r := csv.NewReader(f)
-	r.TrimLeadingSpace = true
+	start = svc.infra.TimeTruncateToDay(start)
+	end = svc.infra.TimeTruncateToDay(end)
 
-	if _, err := r.Read(); err != nil { // header
-		return nil, fmt.Errorf("read header: %w", err)
+	reader := svc.infra.CsvNewReader(f)
+	records, err := svc.infra.CsvReadAll(reader)
+	if err != nil {
+		return nil, fmt.Errorf("read csv: %w", err)
+	}
+	if len(records) == 0 {
+		return nil, nil
 	}
 
-	var out []Transaction
-	line := 1
-	for {
-		line++
-		rec, err := r.Read()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			return nil, fmt.Errorf("line %d: %w", line, err)
-		}
+	out := make([]Transaction, 0, len(records)-1)
+	for i, rec := range records[1:] { // records[0] is the header
+		line := i + 2
 		if len(rec) < 4 {
 			return nil, fmt.Errorf("line %d: expected 4 columns, got %d", line, len(rec))
 		}
@@ -59,6 +54,10 @@ func (svc *Repository) ParseSystemTransactions(ctx context.Context, path string)
 			return nil, fmt.Errorf("line %d: invalid transaction_time %q: %w", line, rec[3], err)
 		}
 
+		if !svc.infra.TimeInRange(ts, start, end) {
+			continue
+		}
+
 		out = append(out, Transaction{
 			TrxID:           strings.TrimSpace(rec[0]),
 			Amount:          amount,
@@ -69,34 +68,29 @@ func (svc *Repository) ParseSystemTransactions(ctx context.Context, path string)
 	return out, nil
 }
 
-// ParseBankStatement reads one bank statement CSV file. bankName tags every
-// record so unmatched results can later be grouped per bank, since the
-// service supports reconciling against several banks in a single run.
-func (svc *Repository) ParseBankStatement(ctx context.Context, path string, bankName string) ([]BankStatement, error) {
+// ParseBankStatement reads one bank statement CSV file
+func (svc *Repository) ParseBankStatement(ctx context.Context, path string, bankName string, start, end time.Time) ([]BankStatement, error) {
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, fmt.Errorf("open bank statement file %s: %w", path, err)
 	}
 	defer f.Close()
 
-	r := csv.NewReader(f)
-	r.TrimLeadingSpace = true
+	start = svc.infra.TimeTruncateToDay(start)
+	end = svc.infra.TimeTruncateToDay(end)
 
-	if _, err := r.Read(); err != nil { // header
-		return nil, fmt.Errorf("read header: %w", err)
+	reader := svc.infra.CsvNewReader(f)
+	records, err := svc.infra.CsvReadAll(reader)
+	if err != nil {
+		return nil, fmt.Errorf("%s: read csv: %w", bankName, err)
+	}
+	if len(records) == 0 {
+		return nil, nil
 	}
 
-	var out []BankStatement
-	line := 1
-	for {
-		line++
-		rec, err := r.Read()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			return nil, fmt.Errorf("%s line %d: %w", bankName, line, err)
-		}
+	out := make([]BankStatement, 0, len(records)-1)
+	for i, rec := range records[1:] { // records[0] is the header
+		line := i + 2
 		if len(rec) < 3 {
 			return nil, fmt.Errorf("%s line %d: expected 3 columns, got %d", bankName, line, len(rec))
 		}
@@ -108,6 +102,10 @@ func (svc *Repository) ParseBankStatement(ctx context.Context, path string, bank
 		date, err := time.Parse(bankDateLayout, strings.TrimSpace(rec[2]))
 		if err != nil {
 			return nil, fmt.Errorf("%s line %d: invalid date %q: %w", bankName, line, rec[2], err)
+		}
+
+		if !svc.infra.TimeInRange(date, start, end) {
+			continue
 		}
 
 		out = append(out, BankStatement{

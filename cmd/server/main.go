@@ -19,6 +19,9 @@ import (
 	"flag"
 	"log"
 
+	"github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure"
+	"github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+	"github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gotime"
 	"github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
 	"github.com/ferdianexe/simple-statement-reconciliation/internal/server/http"
 )
@@ -26,11 +29,15 @@ import (
 func main() {
 	addr := flag.String("addr", ":8080", "address for the HTTP server to listen on")
 	flag.Parse()
-	csvRepo := csv.NewRepository()
+	infra := infrastructure.NewService(infrastructure.NewServiceParam{
+		Csv:  gocsv.Default,
+		Time: gotime.Default,
+	})
+	csvRepo := csv.NewRepository(infra)
 	rsc := NewResources(csvRepo)
 	services := NewService(rsc)
-	usecaseApp := NewUsecases(services)
-	httpAppHandlers := NewHTTPAppHandlers(usecaseApp)
+	usecaseApp := NewUsecases(services, infra)
+	httpAppHandlers := NewHTTPAppHandlers(usecaseApp, infra)
 	srv := http.NewServer(http.Handlers{
 		Reconcile: httpAppHandlers.HTTP.Reconcile,
 	})

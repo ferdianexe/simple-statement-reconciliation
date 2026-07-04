@@ -7,10 +7,11 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNewUsecase(t *testing.T) {
+func Test_NewUsecase(t *testing.T) {
 	type args struct {
 		bank        bankServiceManager
 		transaction transactionServiceManager
+		infra       infraProvider
 	}
 	tests := []struct {
 		name string
@@ -23,10 +24,11 @@ func TestNewUsecase(t *testing.T) {
 				return args{
 					bank:        NewMockbankServiceManager(ctrl),
 					transaction: NewMocktransactionServiceManager(ctrl),
+					infra:       NewMockinfraProvider(ctrl),
 				}
 			},
 			want: func(a args) *Usecase {
-				return &Usecase{bank: a.bank, transaction: a.transaction}
+				return &Usecase{bank: a.bank, transaction: a.transaction, infra: a.infra}
 			},
 		},
 	}
@@ -36,7 +38,7 @@ func TestNewUsecase(t *testing.T) {
 
 			a := test.args(ctrl)
 
-			got := NewUsecase(a.bank, a.transaction)
+			got := NewUsecase(a.bank, a.transaction, a.infra)
 
 			assert.NotNil(t, got)
 			assert.Equal(t, test.want(a), got)

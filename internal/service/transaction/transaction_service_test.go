@@ -30,7 +30,7 @@ func TestService_GetUserTransactionHistory(t *testing.T) {
 			name: "when_ParseSystemTransactions_return_non_nil_error_then_return_non_nil_error",
 			mock: func(m mockFields) {
 				m.resource.EXPECT().
-					ParseSystemTransactions(context.Background(), "testdata/system_transactions.csv").
+					ParseSystemTransactionsFromCSV(context.Background(), "testdata/system_transactions.csv", time.Time{}, time.Time{}).
 					Return(nil, assert.AnError)
 			},
 			args: args{
@@ -44,7 +44,7 @@ func TestService_GetUserTransactionHistory(t *testing.T) {
 			name: "success",
 			mock: func(m mockFields) {
 				m.resource.EXPECT().
-					ParseSystemTransactions(context.Background(), "testdata/system_transactions.csv").
+					ParseSystemTransactionsFromCSV(context.Background(), "testdata/system_transactions.csv", time.Time{}, time.Time{}).
 					Return([]csv.Transaction{
 						{
 							TrxID:           "TRX001",

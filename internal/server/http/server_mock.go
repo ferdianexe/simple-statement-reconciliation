@@ -45,3 +45,15 @@ func (mr *MockreconcileHandlerMockRecorder) HandleReconcile(w, r interface{}) *g
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "HandleReconcile", reflect.TypeOf((*MockreconcileHandler)(nil).HandleReconcile), w, r)
 }
+
+// HandleReconcileImport mocks base method.
+func (m *MockreconcileHandler) HandleReconcileImport(w http.ResponseWriter, r *http.Request) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "HandleReconcileImport", w, r)
+}
+
+// HandleReconcileImport indicates an expected call of HandleReconcileImport.
+func (mr *MockreconcileHandlerMockRecorder) HandleReconcileImport(w, r interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "HandleReconcileImport", reflect.TypeOf((*MockreconcileHandler)(nil).HandleReconcileImport), w, r)
+}

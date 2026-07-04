@@ -18,6 +18,8 @@ func TestResource_ParseBankStatement(t *testing.T) {
 		ctx      context.Context
 		path     string
 		bankName string
+		start    time.Time
+		end      time.Time
 	}
 	tests := []struct {
 		name    string
@@ -30,7 +32,7 @@ func TestResource_ParseBankStatement(t *testing.T) {
 			name: "when_csvRepo_ParseBankStatement_return_non_nil_error_then_return_non_nil_error",
 			mock: func(m mockFields) {
 				m.csvRepo.EXPECT().
-					ParseBankStatement(context.Background(), "testdata/bank_bca.csv", "BCA").
+					ParseBankStatement(context.Background(), "testdata/bank_bca.csv", "BCA", time.Time{}, time.Time{}).
 					Return(nil, assert.AnError)
 			},
 			args: args{
@@ -45,7 +47,7 @@ func TestResource_ParseBankStatement(t *testing.T) {
 			name: "success",
 			mock: func(m mockFields) {
 				m.csvRepo.EXPECT().
-					ParseBankStatement(context.Background(), "testdata/bank_bca.csv", "BCA").
+					ParseBankStatement(context.Background(), "testdata/bank_bca.csv", "BCA", time.Time{}, time.Time{}).
 					Return([]csv.BankStatement{
 						{UniqueID: "BCA-1", Amount: -110000, Date: time.Date(2024, 1, 8, 0, 0, 0, 0, time.UTC), Bank: "BCA"},
 					}, nil)
@@ -76,7 +78,7 @@ func TestResource_ParseBankStatement(t *testing.T) {
 				csvRepo: mockFields.csvRepo,
 			}
 
-			got, err := rsc.ParseBankStatement(test.args.ctx, test.args.path, test.args.bankName)
+			got, err := rsc.ParseBankStatementFromCSV(test.args.ctx, test.args.path, test.args.bankName, test.args.start, test.args.end)
 			assert.Equal(t, test.want, got)
 			assert.Equal(t, test.wantErr, err)
 		})

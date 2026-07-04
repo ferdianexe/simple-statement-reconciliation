@@ -2,16 +2,17 @@ package transaction
 
 import (
 	"context"
+	"time"
 
 	"github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
 )
 
-//go:generate mockgen -source=service.go -destination=mock_service.go -package=transaction
+//go:generate mockgen -source=service.go -destination=service_mock.go -package=transaction
 
-// resourceProvider provides resource methods needed for chatchannel service.
+// resourceProvider provides resource methods needed for transaction service.
 type resourceProvider interface {
-	// ParseSystemTransactions parses system transactions CSV file.
-	ParseSystemTransactions(ctx context.Context, path string) ([]csv.Transaction, error)
+	// ParseSystemTransactionsFromCSV parses system transactions CSV file.
+	ParseSystemTransactionsFromCSV(ctx context.Context, path string, start, end time.Time) ([]csv.Transaction, error)
 }
 
 // Service type of transaction service.

@@ -5,10 +5,12 @@ import (
 	"net/http"
 )
 
-//go:generate mockgen -source=server.go -destination=mock_server.go -package=http
+//go:generate mockgen -source=server.go -destination=server_mock.go -package=http
 
 type reconcileHandler interface {
 	HandleReconcile(w http.ResponseWriter, r *http.Request)
+	// HandleReconcileImport handles the CSV-upload variant of reconciliation.
+	HandleReconcileImport(w http.ResponseWriter, r *http.Request)
 }
 
 // Handlers holds a collection of HTTP handlers provided for server.

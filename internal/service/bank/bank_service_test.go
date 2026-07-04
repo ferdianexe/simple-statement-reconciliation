@@ -30,7 +30,7 @@ func TestService_GetBankStatementHistory(t *testing.T) {
 			name: "when_ParseBankStatement_return_non_nil_error_then_return_non_nil_error",
 			mock: func(m mockFields) {
 				m.resource.EXPECT().
-					ParseBankStatement(context.Background(), "testdata/bank.csv", "BCA").
+					ParseBankStatementFromCSV(context.Background(), "testdata/bank.csv", "BCA", time.Time{}, time.Time{}).
 					Return(nil, assert.AnError)
 			},
 			args: args{
@@ -46,7 +46,7 @@ func TestService_GetBankStatementHistory(t *testing.T) {
 			name: "when_path_is_empty_then_derive_default_path_from_bank_name",
 			mock: func(m mockFields) {
 				m.resource.EXPECT().
-					ParseBankStatement(context.Background(), "testdata/bank_bca.csv", "BCA").
+					ParseBankStatementFromCSV(context.Background(), "testdata/bank_bca.csv", "BCA", time.Time{}, time.Time{}).
 					Return([]csv.BankStatement{
 						{UniqueID: "BCA-1", Amount: -110000, Date: time.Date(2024, 1, 8, 0, 0, 0, 0, time.UTC), Bank: "BCA"},
 					}, nil)
@@ -66,12 +66,12 @@ func TestService_GetBankStatementHistory(t *testing.T) {
 			name: "success_with_multiple_banks_aggregates_results",
 			mock: func(m mockFields) {
 				m.resource.EXPECT().
-					ParseBankStatement(context.Background(), "testdata/bca.csv", "BCA").
+					ParseBankStatementFromCSV(context.Background(), "testdata/bca.csv", "BCA", time.Time{}, time.Time{}).
 					Return([]csv.BankStatement{
 						{UniqueID: "BCA-1", Amount: -110000, Date: time.Date(2024, 1, 8, 0, 0, 0, 0, time.UTC), Bank: "BCA"},
 					}, nil)
 				m.resource.EXPECT().
-					ParseBankStatement(context.Background(), "testdata/bni.csv", "BNI").
+					ParseBankStatementFromCSV(context.Background(), "testdata/bni.csv", "BNI", time.Time{}, time.Time{}).
 					Return([]csv.BankStatement{
 						{UniqueID: "BNI-1", Amount: 220000, Date: time.Date(2024, 1, 12, 0, 0, 0, 0, time.UTC), Bank: "BNI"},
 					}, nil)

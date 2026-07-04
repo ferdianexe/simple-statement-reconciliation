@@ -15,7 +15,7 @@ func (svc *Service) GetBankStatementHistory(ctx context.Context, request []BankS
 		if path == "" {
 			path = defaultPath + fmt.Sprintf("bank_%s.csv", strings.ToLower(b.BankName))
 		}
-		stmts, err := svc.resource.ParseBankStatement(ctx, path, b.BankName)
+		stmts, err := svc.resource.ParseBankStatementFromCSV(ctx, path, b.BankName, b.Start, b.End)
 		if err != nil {
 			return []BankStatement{}, fmt.Errorf("parsing bank statement %s: %w", path, err)
 		}

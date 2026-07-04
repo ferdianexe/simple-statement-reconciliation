@@ -4,10 +4,14 @@ import (
 	"testing"
 
 	"github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+	gomock "github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestNewResources(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
 	type args struct {
 		csvRepo *csv.Repository
 	}
@@ -18,7 +22,7 @@ func TestNewResources(t *testing.T) {
 		{
 			name: "success",
 			args: args{
-				csvRepo: csv.NewRepository(),
+				csvRepo: csv.NewRepository(NewMockinfraProvider(ctrl)),
 			},
 		},
 	}

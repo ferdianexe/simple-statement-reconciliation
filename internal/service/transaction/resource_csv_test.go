@@ -10,13 +10,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestResource_ParseSystemTransactions(t *testing.T) {
+func TestResource_ParseSystemTransactionsFromCSV(t *testing.T) {
 	type mockFields struct {
 		csvRepo *MockcsvRepoProvider
 	}
 	type args struct {
-		ctx  context.Context
-		path string
+		ctx       context.Context
+		path      string
+		startDate time.Time
+		endDate   time.Time
 	}
 	tests := []struct {
 		name    string
@@ -29,12 +31,14 @@ func TestResource_ParseSystemTransactions(t *testing.T) {
 			name: "when_csvRepo_ParseSystemTransactions_return_non_nil_error_then_return_non_nil_error",
 			mock: func(m mockFields) {
 				m.csvRepo.EXPECT().
-					ParseSystemTransactions(context.Background(), "testdata/system_transactions.csv").
+					ParseSystemTransactions(context.Background(), "testdata/system_transactions.csv", time.Time{}, time.Time{}).
 					Return(nil, assert.AnError)
 			},
 			args: args{
-				ctx:  context.Background(),
-				path: "testdata/system_transactions.csv",
+				ctx:       context.Background(),
+				path:      "testdata/system_transactions.csv",
+				startDate: time.Time{},
+				endDate:   time.Time{},
 			},
 			want:    nil,
 			wantErr: assert.AnError,
@@ -43,7 +47,7 @@ func TestResource_ParseSystemTransactions(t *testing.T) {
 			name: "success",
 			mock: func(m mockFields) {
 				m.csvRepo.EXPECT().
-					ParseSystemTransactions(context.Background(), "testdata/system_transactions.csv").
+					ParseSystemTransactions(context.Background(), "testdata/system_transactions.csv", time.Time{}, time.Time{}).
 					Return([]csv.Transaction{
 						{
 							TrxID:           "TRX001",
@@ -54,8 +58,10 @@ func TestResource_ParseSystemTransactions(t *testing.T) {
 					}, nil)
 			},
 			args: args{
-				ctx:  context.Background(),
-				path: "testdata/system_transactions.csv",
+				ctx:       context.Background(),
+				path:      "testdata/system_transactions.csv",
+				startDate: time.Time{},
+				endDate:   time.Time{},
 			},
 			want: []csv.Transaction{
 				{
@@ -83,7 +89,7 @@ func TestResource_ParseSystemTransactions(t *testing.T) {
 				csvRepo: mockFields.csvRepo,
 			}
 
-			got, err := rsc.ParseSystemTransactions(test.args.ctx, test.args.path)
+			got, err := rsc.ParseSystemTransactionsFromCSV(test.args.ctx, test.args.path, test.args.startDate, test.args.endDate)
 			assert.Equal(t, test.want, got)
 			assert.Equal(t, test.wantErr, err)
 		})

@@ -5,6 +5,7 @@ This is a simple transaction reconciliation service built with Go.
 - Detect matched, discrepant, and unmatched transactions within a date range
 - Group unmatched bank records by bank
 - Run as a one-off CLI batch job or as an HTTP service
+- Reconcile from server-side file paths, or directly from uploaded CSV content
 - Output as plain text or JSON
 ## Notes
 - A system transaction and a bank record are matched on date + type first; amount is only compared afterward, since discrepancies only ever occur in amount.
@@ -76,6 +77,33 @@ Response sample:
         {"Bank": "BNI", "Records": [{"UniqueID": "BNI-4480", "Amount": 75000, "Date": "2024-01-20T00:00:00Z", "Bank": "BNI"}]}
     ]
 }
+```
+### Import via CSV upload
+```
+POST /reconcile/import
+Content-Type: multipart/form-data
+
+start=2024-01-01
+end=2024-01-31
+system_transactions=<system_transactions.csv file>
+BCA=<bank_bca.csv file>
+BNI=<bank_bni.csv file>
+```
+Unlike `/reconcile`, this endpoint takes CSV file content directly instead of server-side file paths. The `system_transactions` field name is reserved for csv system transaction; while csv bank statement files are optional. but at least one of them must be provided. has identical response format to `/reconcile`.
+Supported bank names are:
+- BCA
+- BNI
+- Mandiri
+- BRI
+
+Example with curl:
+```
+curl -X POST localhost:8080/reconcile/import \
+  -F start=2024-01-01 \
+  -F end=2024-01-31 \
+  -F system_transactions=@testdata/system_transactions.csv \
+  -F BCA=@testdata/bank_bca.csv \
+  -F BNI=@testdata/bank_bni.csv
 ```
 ### Health check
 ```

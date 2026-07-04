@@ -6,6 +6,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gotime"
 	"github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank"
 	"github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction"
 	gomock "github.com/golang/mock/gomock"
@@ -19,6 +20,7 @@ func TestUsecase_Reconcile(t *testing.T) {
 	type mockFields struct {
 		bank        *MockbankServiceManager
 		transaction *MocktransactionServiceManager
+		infra       *MockinfraProvider
 	}
 	type args struct {
 		ctx     context.Context
@@ -53,6 +55,7 @@ func TestUsecase_Reconcile(t *testing.T) {
 		{
 			name: "when_GetBankStatementHistory_return_non_nil_error_then_return_non_nil_error",
 			mock: func(m mockFields) {
+				// Also fails before doReconcile - no wireRealInfra here.
 				m.transaction.EXPECT().
 					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv"}).
 					Return([]transaction.Transaction{}, nil)
@@ -77,6 +80,12 @@ func TestUsecase_Reconcile(t *testing.T) {
 		{
 			name: "success_exact_match_no_discrepancy",
 			mock: func(m mockFields) {
+				m.infra.EXPECT().TimeTruncateToDay(gomock.Any()).DoAndReturn(func(t time.Time) time.Time {
+					return gotime.Default.TruncateToDay(t)
+				}).AnyTimes()
+				m.infra.EXPECT().TimeInRange(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(func(d, start, end time.Time) bool {
+					return gotime.Default.InRange(d, start, end)
+				}).AnyTimes()
 				m.transaction.EXPECT().
 					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv"}).
 					Return([]transaction.Transaction{
@@ -99,6 +108,7 @@ func TestUsecase_Reconcile(t *testing.T) {
 					End:     end,
 				},
 			},
+			// Exact match (diff == 0) lands in Matched, not AmountMismatch.
 			want: ReconcileSummary{
 				TotalProcessed:   2,
 				TotalMatched:     1,
@@ -106,17 +116,22 @@ func TestUsecase_Reconcile(t *testing.T) {
 				TotalDiscrepancy: 0,
 				Matched: []MatchedPair{
 					{
-						System:      SystemTransaction{TrxID: "TRX1", Amount: 110000, Type: Debit, TransactionTime: time.Date(2024, 1, 8, 10, 0, 0, 0, time.UTC)},
-						Bank:        BankStatement{UniqueID: "BCA-1", Amount: -110000, Date: time.Date(2024, 1, 8, 0, 0, 0, 0, time.UTC), Bank: "BCA"},
-						Discrepancy: 0,
+						System: SystemTransaction{TrxID: "TRX1", Amount: 110000, Type: Debit, TransactionTime: time.Date(2024, 1, 8, 10, 0, 0, 0, time.UTC)},
+						Bank:   BankStatement{UniqueID: "BCA-1", Amount: -110000, Date: time.Date(2024, 1, 8, 0, 0, 0, 0, time.UTC), Bank: "BCA"},
 					},
 				},
 			},
 			wantErr: nil,
 		},
 		{
-			name: "success_matched_with_discrepancy",
+			name: "matched_with_discrepancy_now_lands_in_amount_mismatch",
 			mock: func(m mockFields) {
+				m.infra.EXPECT().TimeTruncateToDay(gomock.Any()).DoAndReturn(func(t time.Time) time.Time {
+					return gotime.Default.TruncateToDay(t)
+				}).AnyTimes()
+				m.infra.EXPECT().TimeInRange(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(func(d, start, end time.Time) bool {
+					return gotime.Default.InRange(d, start, end)
+				}).AnyTimes()
 				m.transaction.EXPECT().
 					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv"}).
 					Return([]transaction.Transaction{
@@ -139,12 +154,15 @@ func TestUsecase_Reconcile(t *testing.T) {
 					End:     end,
 				},
 			},
+			// A non-zero diff no longer counts toward TotalMatched/Matched -
+			// it's reported via AmountMismatch instead.
 			want: ReconcileSummary{
-				TotalProcessed:   2,
-				TotalMatched:     1,
-				TotalUnmatched:   0,
-				TotalDiscrepancy: 5000,
-				Matched: []MatchedPair{
+				TotalProcessed:       2,
+				TotalMatched:         0,
+				TotalUnmatched:       1,
+				TotalUnmatchedAmount: 1,
+				TotalDiscrepancy:     5000,
+				AmountMismatch: []MatchedPair{
 					{
 						System:      SystemTransaction{TrxID: "TRX1", Amount: 110000, Type: Debit, TransactionTime: time.Date(2024, 1, 8, 10, 0, 0, 0, time.UTC)},
 						Bank:        BankStatement{UniqueID: "BCA-1", Amount: -105000, Date: time.Date(2024, 1, 8, 0, 0, 0, 0, time.UTC), Bank: "BCA"},
@@ -157,6 +175,12 @@ func TestUsecase_Reconcile(t *testing.T) {
 		{
 			name: "unmatched_system_transaction_when_no_bank_records_found",
 			mock: func(m mockFields) {
+				m.infra.EXPECT().TimeTruncateToDay(gomock.Any()).DoAndReturn(func(t time.Time) time.Time {
+					return gotime.Default.TruncateToDay(t)
+				}).AnyTimes()
+				m.infra.EXPECT().TimeInRange(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(func(d, start, end time.Time) bool {
+					return gotime.Default.InRange(d, start, end)
+				}).AnyTimes()
 				m.transaction.EXPECT().
 					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv"}).
 					Return([]transaction.Transaction{
@@ -178,10 +202,11 @@ func TestUsecase_Reconcile(t *testing.T) {
 				},
 			},
 			want: ReconcileSummary{
-				TotalProcessed:   1,
-				TotalMatched:     0,
-				TotalUnmatched:   1,
-				TotalDiscrepancy: 0,
+				TotalProcessed:       1,
+				TotalMatched:         0,
+				TotalUnmatched:       1,
+				TotalUnmatchedSystem: 1,
+				TotalDiscrepancy:     0,
 				UnmatchedSystem: []SystemTransaction{
 					{TrxID: "TRX1", Amount: 110000, Type: Debit, TransactionTime: time.Date(2024, 1, 8, 10, 0, 0, 0, time.UTC)},
 				},
@@ -195,16 +220,19 @@ func TestUsecase_Reconcile(t *testing.T) {
 
 			bankService := NewMockbankServiceManager(ctrl)
 			transactionService := NewMocktransactionServiceManager(ctrl)
+			infraProvider := NewMockinfraProvider(ctrl)
 
 			mockFields := mockFields{
 				bank:        bankService,
 				transaction: transactionService,
+				infra:       infraProvider,
 			}
 			test.mock(mockFields)
 
 			uc := &Usecase{
 				bank:        mockFields.bank,
 				transaction: mockFields.transaction,
+				infra:       mockFields.infra,
 			}
 
 			got, err := uc.Reconcile(test.args.ctx, test.args.request)

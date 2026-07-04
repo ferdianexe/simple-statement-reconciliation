@@ -1,24 +1,34 @@
 package csv
 
-// Repository type of DS model repository that used as collection of DS model client.
-type Repository struct {
+import (
+	"encoding/csv"
+	"io"
+	"time"
+
+	"github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+)
+
+//go:generate mockgen -source=repo.go -destination=repo_mock.go -package=csv
+
+// infraProvider provides the infrastructure primitives this repository
+type infraProvider interface {
+	// CsvNewReader returns a new csv.Reader that reads from r.
+	CsvNewReader(r io.Reader) *csv.Reader
+	// CsvReadAll reads all the remaining records from r.
+	CsvReadAll(r gocsv.Reader) ([][]string, error)
+	// TimeTruncateToDay strips the time-of-day component from t.
+	TimeTruncateToDay(t time.Time) time.Time
+	// TimeInRange reports whether d's date falls within [start, end] inclusive.
+	TimeInRange(d, start, end time.Time) bool
 }
 
-// NewRepository Package parser reads the two input CSV formats into domain models.
-//
-// Expected system transaction CSV columns (header row required):
-//
-//	trx_id,amount,type,transaction_time
-//	TRX001,110000,DEBIT,2024-01-08T10:00:00Z
-//
-// Expected bank statement CSV columns (header row required):
-//
-//	unique_identifier,amount,date
-//	BCA-99182,-110000,2024-01-08
-//
-// Both parsers stream the file row by row rather than loading it into
-// memory as a whole string, so behaviour degrades gracefully as input
-// files grow large.
-func NewRepository() *Repository {
-	return &Repository{}
+// Repository type of csv-backed repository.
+type Repository struct {
+	infra infraProvider
+}
+
+// NewRepository instantiates the csv repository with the given
+// infrastructure dependency.
+func NewRepository(infra infraProvider) *Repository {
+	return &Repository{infra: infra}
 }

@@ -96,12 +96,16 @@ type UnmatchedByBank struct {
 
 // ReconcileSummary is the full output of a reconciliation run.
 type ReconcileSummary struct {
-	TotalProcessed   int
-	TotalMatched     int
-	TotalUnmatched   int
-	TotalDiscrepancy float64
+	TotalProcessed       int
+	TotalMatched         int
+	TotalUnmatched       int
+	TotalUnmatchedAmount int
+	TotalUnmatchedBank   int
+	TotalUnmatchedSystem int
+	TotalDiscrepancy     float64
 
 	Matched         []MatchedPair
+	AmountMismatch  []MatchedPair
 	UnmatchedSystem []SystemTransaction
 	UnmatchedBank   []UnmatchedByBank
 }

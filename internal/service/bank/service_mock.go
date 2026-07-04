@@ -7,6 +7,7 @@ package bank
 import (
 	context "context"
 	reflect "reflect"
+	time "time"
 
 	csv "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
 	gomock "github.com/golang/mock/gomock"
@@ -35,17 +36,17 @@ func (m *MockresourceProvider) EXPECT() *MockresourceProviderMockRecorder {
 	return m.recorder
 }
 
-// ParseBankStatement mocks base method.
-func (m *MockresourceProvider) ParseBankStatement(ctx context.Context, path, bankName string) ([]csv.BankStatement, error) {
+// ParseBankStatementFromCSV mocks base method.
+func (m *MockresourceProvider) ParseBankStatementFromCSV(ctx context.Context, path, bankName string, start, end time.Time) ([]csv.BankStatement, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "ParseBankStatement", ctx, path, bankName)
+	ret := m.ctrl.Call(m, "ParseBankStatementFromCSV", ctx, path, bankName, start, end)
 	ret0, _ := ret[0].([]csv.BankStatement)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// ParseBankStatement indicates an expected call of ParseBankStatement.
-func (mr *MockresourceProviderMockRecorder) ParseBankStatement(ctx, path, bankName interface{}) *gomock.Call {
+// ParseBankStatementFromCSV indicates an expected call of ParseBankStatementFromCSV.
+func (mr *MockresourceProviderMockRecorder) ParseBankStatementFromCSV(ctx, path, bankName, start, end interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ParseBankStatement", reflect.TypeOf((*MockresourceProvider)(nil).ParseBankStatement), ctx, path, bankName)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ParseBankStatementFromCSV", reflect.TypeOf((*MockresourceProvider)(nil).ParseBankStatementFromCSV), ctx, path, bankName, start, end)
 }

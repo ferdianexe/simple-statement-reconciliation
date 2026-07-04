@@ -20,6 +20,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure"
+	"github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+	"github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gotime"
 	"github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
 	"github.com/ferdianexe/simple-statement-reconciliation/internal/usecase/reconcile"
 )
@@ -53,10 +56,14 @@ func main() {
 		log.Fatalf("invalid -end date: %v", err)
 	}
 
-	csvRepo := csv.NewRepository()
+	infra := infrastructure.NewService(infrastructure.NewServiceParam{
+		Csv:  gocsv.Default,
+		Time: gotime.Default,
+	})
+	csvRepo := csv.NewRepository(infra)
 	rsc := NewResources(csvRepo)
 	services := NewService(rsc)
-	usecaseApp := NewUsecases(services)
+	usecaseApp := NewUsecases(services, infra)
 
 	summary, err := usecaseApp.reconcile.Reconcile(context.Background(), reconcile.ReconcileRequest{
 		SysPath: *sysPath,

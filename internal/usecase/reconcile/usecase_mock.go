@@ -7,6 +7,7 @@ package reconcile
 import (
 	context "context"
 	reflect "reflect"
+	time "time"
 
 	bank "github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank"
 	transaction "github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction"
@@ -87,4 +88,55 @@ func (m *MocktransactionServiceManager) GetUserTransactionHistory(ctx context.Co
 func (mr *MocktransactionServiceManagerMockRecorder) GetUserTransactionHistory(ctx, request interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserTransactionHistory", reflect.TypeOf((*MocktransactionServiceManager)(nil).GetUserTransactionHistory), ctx, request)
+}
+
+// MockinfraProvider is a mock of infraProvider interface.
+type MockinfraProvider struct {
+	ctrl     *gomock.Controller
+	recorder *MockinfraProviderMockRecorder
+}
+
+// MockinfraProviderMockRecorder is the mock recorder for MockinfraProvider.
+type MockinfraProviderMockRecorder struct {
+	mock *MockinfraProvider
+}
+
+// NewMockinfraProvider creates a new mock instance.
+func NewMockinfraProvider(ctrl *gomock.Controller) *MockinfraProvider {
+	mock := &MockinfraProvider{ctrl: ctrl}
+	mock.recorder = &MockinfraProviderMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockinfraProvider) EXPECT() *MockinfraProviderMockRecorder {
+	return m.recorder
+}
+
+// TimeInRange mocks base method.
+func (m *MockinfraProvider) TimeInRange(d, start, end time.Time) bool {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "TimeInRange", d, start, end)
+	ret0, _ := ret[0].(bool)
+	return ret0
+}
+
+// TimeInRange indicates an expected call of TimeInRange.
+func (mr *MockinfraProviderMockRecorder) TimeInRange(d, start, end interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TimeInRange", reflect.TypeOf((*MockinfraProvider)(nil).TimeInRange), d, start, end)
+}
+
+// TimeTruncateToDay mocks base method.
+func (m *MockinfraProvider) TimeTruncateToDay(t time.Time) time.Time {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "TimeTruncateToDay", t)
+	ret0, _ := ret[0].(time.Time)
+	return ret0
+}
+
+// TimeTruncateToDay indicates an expected call of TimeTruncateToDay.
+func (mr *MockinfraProviderMockRecorder) TimeTruncateToDay(t interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TimeTruncateToDay", reflect.TypeOf((*MockinfraProvider)(nil).TimeTruncateToDay), t)
 }

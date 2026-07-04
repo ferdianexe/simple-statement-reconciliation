@@ -10,6 +10,7 @@ import (
 func TestNewHandler(t *testing.T) {
 	type args struct {
 		reconcile reconcileUsecaseManager
+		infra     infraProvider
 	}
 	tests := []struct {
 		name string
@@ -21,10 +22,11 @@ func TestNewHandler(t *testing.T) {
 			args: func(ctrl *gomock.Controller) args {
 				return args{
 					reconcile: NewMockreconcileUsecaseManager(ctrl),
+					infra:     NewMockinfraProvider(ctrl),
 				}
 			},
 			want: func(a args) *Handler {
-				return &Handler{reconcile: a.reconcile}
+				return &Handler{reconcile: a.reconcile, infra: a.infra}
 			},
 		},
 	}
@@ -34,7 +36,7 @@ func TestNewHandler(t *testing.T) {
 
 			a := test.args(ctrl)
 
-			got := NewHandler(a.reconcile)
+			got := NewHandler(a.reconcile, a.infra)
 
 			assert.NotNil(t, got)
 			assert.Equal(t, test.want(a), got)
