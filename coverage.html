@@ -2735,7 +2735,7 @@ func (uc *Usecase) Reconcile(ctx context.Context, request ReconcileRequest) (Rec
                 })
         }</span>
 
-        <span class="cov8" title="1">userTrx, err := uc.transaction.GetUserTransactionHistory(ctx, transaction.TransactionHistoryParams{SysPath: request.SysPath})
+        <span class="cov8" title="1">userTrx, err := uc.transaction.GetUserTransactionHistory(ctx, transaction.TransactionHistoryParams{SysPath: request.SysPath, StartDate: request.Start, EndDate: request.End})
         if err != nil </span><span class="cov8" title="1">{
                 return ReconcileSummary{}, fmt.Errorf("parsing user transactions: %w", err)
         }</span>

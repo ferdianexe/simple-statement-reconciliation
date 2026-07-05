@@ -37,6 +37,7 @@ func (srv *Server) NewMux() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/healthz", handleHealthz)
 	mux.HandleFunc("/reconcile", srv.handlers.Reconcile.HandleReconcile)
+	mux.HandleFunc("/reconcile/import", srv.handlers.Reconcile.HandleReconcileImport)
 	return mux
 }
 

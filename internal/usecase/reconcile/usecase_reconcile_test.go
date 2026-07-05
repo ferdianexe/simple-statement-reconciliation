@@ -37,7 +37,7 @@ func TestUsecase_Reconcile(t *testing.T) {
 			name: "when_GetUserTransactionHistory_return_non_nil_error_then_return_non_nil_error",
 			mock: func(m mockFields) {
 				m.transaction.EXPECT().
-					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv"}).
+					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv", StartDate: start, EndDate: end}).
 					Return(nil, assert.AnError)
 			},
 			args: args{
@@ -57,7 +57,7 @@ func TestUsecase_Reconcile(t *testing.T) {
 			mock: func(m mockFields) {
 				// Also fails before doReconcile - no wireRealInfra here.
 				m.transaction.EXPECT().
-					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv"}).
+					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv", StartDate: start, EndDate: end}).
 					Return([]transaction.Transaction{}, nil)
 				m.bank.EXPECT().
 					GetBankStatementHistory(context.Background(), []bank.BankStatementParams{
@@ -87,7 +87,7 @@ func TestUsecase_Reconcile(t *testing.T) {
 					return gotime.Default.InRange(d, start, end)
 				}).AnyTimes()
 				m.transaction.EXPECT().
-					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv"}).
+					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv", StartDate: start, EndDate: end}).
 					Return([]transaction.Transaction{
 						{TrxID: "TRX1", Amount: 110000, Type: transaction.Debit, TransactionTime: time.Date(2024, 1, 8, 10, 0, 0, 0, time.UTC)},
 					}, nil)
@@ -133,7 +133,7 @@ func TestUsecase_Reconcile(t *testing.T) {
 					return gotime.Default.InRange(d, start, end)
 				}).AnyTimes()
 				m.transaction.EXPECT().
-					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv"}).
+					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv", StartDate: start, EndDate: end}).
 					Return([]transaction.Transaction{
 						{TrxID: "TRX1", Amount: 110000, Type: transaction.Debit, TransactionTime: time.Date(2024, 1, 8, 10, 0, 0, 0, time.UTC)},
 					}, nil)
@@ -182,7 +182,7 @@ func TestUsecase_Reconcile(t *testing.T) {
 					return gotime.Default.InRange(d, start, end)
 				}).AnyTimes()
 				m.transaction.EXPECT().
-					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv"}).
+					GetUserTransactionHistory(context.Background(), transaction.TransactionHistoryParams{SysPath: "sys.csv", StartDate: start, EndDate: end}).
 					Return([]transaction.Transaction{
 						{TrxID: "TRX1", Amount: 110000, Type: transaction.Debit, TransactionTime: time.Date(2024, 1, 8, 10, 0, 0, 0, time.UTC)},
 					}, nil)

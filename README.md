@@ -1,5 +1,8 @@
 # simple-statement-reconciliation
 This is a simple transaction reconciliation service built with Go.
+
+[![Coverage report](https://img.shields.io/badge/coverage-report-blue)](https://ferdianexe.github.io/simple-statement-reconciliation/coverage.html)
+
 ## Features
 - Reconcile internal system transactions against one or more bank statement CSV files
 - Detect matched, discrepant, and unmatched transactions within a date range
@@ -113,3 +116,7 @@ Response sample:
 ```
 ok
 ```
+## Test coverage
+Coverage report: https://ferdianexe.github.io/simple-statement-reconciliation/coverage.html
+
+Regenerate it locally with `make coverage` (writes `coverage.html`), then commit and push the updated file to refresh the link above.

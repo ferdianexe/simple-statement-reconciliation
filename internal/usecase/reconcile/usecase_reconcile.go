@@ -24,7 +24,7 @@ func (uc *Usecase) Reconcile(ctx context.Context, request ReconcileRequest) (Rec
 		})
 	}
 
-	userTrx, err := uc.transaction.GetUserTransactionHistory(ctx, transaction.TransactionHistoryParams{SysPath: request.SysPath})
+	userTrx, err := uc.transaction.GetUserTransactionHistory(ctx, transaction.TransactionHistoryParams{SysPath: request.SysPath, StartDate: request.Start, EndDate: request.End})
 	if err != nil {
 		return ReconcileSummary{}, fmt.Errorf("parsing user transactions: %w", err)
 	}
