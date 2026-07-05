@@ -62,3 +62,9 @@ tidy:
 ## clean: remove build artifacts
 clean:
 	rm -rf $(BUILD_DIR)
+
+## coverage: run tests with coverage and open an HTML report
+coverage:
+	go test $$(go list ./... | grep -v /vendor/) -coverprofile=coverage.out
+	go tool cover -html=coverage.out -o coverage.html
+	@echo "Coverage report: coverage.html"

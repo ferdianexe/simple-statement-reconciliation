@@ -1,0 +1,2944 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>reconcile: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/ferdianexe/simple-statement-reconciliation/cmd/reconcile/init.go (100.0%)</option>
+				
+				<option value="file1">github.com/ferdianexe/simple-statement-reconciliation/cmd/reconcile/init_mock.go (10.3%)</option>
+				
+				<option value="file2">github.com/ferdianexe/simple-statement-reconciliation/cmd/reconcile/init_resource.go (100.0%)</option>
+				
+				<option value="file3">github.com/ferdianexe/simple-statement-reconciliation/cmd/reconcile/init_service.go (100.0%)</option>
+				
+				<option value="file4">github.com/ferdianexe/simple-statement-reconciliation/cmd/reconcile/init_usecase.go (100.0%)</option>
+				
+				<option value="file5">github.com/ferdianexe/simple-statement-reconciliation/cmd/reconcile/main.go (0.0%)</option>
+				
+				<option value="file6">github.com/ferdianexe/simple-statement-reconciliation/cmd/server/init.go (100.0%)</option>
+				
+				<option value="file7">github.com/ferdianexe/simple-statement-reconciliation/cmd/server/init_mock.go (10.3%)</option>
+				
+				<option value="file8">github.com/ferdianexe/simple-statement-reconciliation/cmd/server/init_resource.go (100.0%)</option>
+				
+				<option value="file9">github.com/ferdianexe/simple-statement-reconciliation/cmd/server/init_service.go (100.0%)</option>
+				
+				<option value="file10">github.com/ferdianexe/simple-statement-reconciliation/cmd/server/init_usecase.go (100.0%)</option>
+				
+				<option value="file11">github.com/ferdianexe/simple-statement-reconciliation/cmd/server/main.go (0.0%)</option>
+				
+				<option value="file12">github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv/gocsv.go (100.0%)</option>
+				
+				<option value="file13">github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv/gocsv_mock.go (0.0%)</option>
+				
+				<option value="file14">github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gotime/gotime.go (75.0%)</option>
+				
+				<option value="file15">github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/infrastructure.go (0.0%)</option>
+				
+				<option value="file16">github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv/csv.go (87.7%)</option>
+				
+				<option value="file17">github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv/repo.go (100.0%)</option>
+				
+				<option value="file18">github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv/repo_mock.go (100.0%)</option>
+				
+				<option value="file19">github.com/ferdianexe/simple-statement-reconciliation/internal/server/http/reconcile/handler.go (100.0%)</option>
+				
+				<option value="file20">github.com/ferdianexe/simple-statement-reconciliation/internal/server/http/reconcile/handler_mock.go (82.9%)</option>
+				
+				<option value="file21">github.com/ferdianexe/simple-statement-reconciliation/internal/server/http/reconcile/reconcile_handler.go (76.0%)</option>
+				
+				<option value="file22">github.com/ferdianexe/simple-statement-reconciliation/internal/server/http/server.go (77.8%)</option>
+				
+				<option value="file23">github.com/ferdianexe/simple-statement-reconciliation/internal/server/http/server_mock.go (66.7%)</option>
+				
+				<option value="file24">github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank/bank_service.go (100.0%)</option>
+				
+				<option value="file25">github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank/resource.go (100.0%)</option>
+				
+				<option value="file26">github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank/resource_csv.go (100.0%)</option>
+				
+				<option value="file27">github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank/resource_mock.go (100.0%)</option>
+				
+				<option value="file28">github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank/service.go (100.0%)</option>
+				
+				<option value="file29">github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank/service_mock.go (100.0%)</option>
+				
+				<option value="file30">github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction/resource.go (100.0%)</option>
+				
+				<option value="file31">github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction/resource_csv.go (100.0%)</option>
+				
+				<option value="file32">github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction/resource_mock.go (100.0%)</option>
+				
+				<option value="file33">github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction/service.go (100.0%)</option>
+				
+				<option value="file34">github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction/service_mock.go (100.0%)</option>
+				
+				<option value="file35">github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction/transaction_service.go (100.0%)</option>
+				
+				<option value="file36">github.com/ferdianexe/simple-statement-reconciliation/internal/usecase/reconcile/types.go (66.7%)</option>
+				
+				<option value="file37">github.com/ferdianexe/simple-statement-reconciliation/internal/usecase/reconcile/usecase.go (100.0%)</option>
+				
+				<option value="file38">github.com/ferdianexe/simple-statement-reconciliation/internal/usecase/reconcile/usecase_mock.go (100.0%)</option>
+				
+				<option value="file39">github.com/ferdianexe/simple-statement-reconciliation/internal/usecase/reconcile/usecase_reconcile.go (81.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package main
+
+import (
+        "encoding/csv"
+        "io"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/server/http/reconcile"
+)
+
+//go:generate mockgen -source=./init.go -destination=./init_mock.go -package=main
+
+// HTTPAppHandlers contains list of http and nsq handler to support main app.
+type HTTPAppHandlers struct {
+        HTTP HTTPHandlers
+}
+
+// HTTPHandlers contains a list of http handler to support main app.
+type HTTPHandlers struct {
+        Reconcile *reconcile.Handler
+}
+
+// infraProvider is the interface that wraps the infrastructure methods needed by handler.
+type infraProvider interface {
+        // CsvNewReader returns a new csv.Reader that reads from r.
+        CsvNewReader(r io.Reader) *csv.Reader
+        // CsvReadAll reads all the remaining records from r.
+        CsvReadAll(r gocsv.Reader) ([][]string, error)
+        // TimeInRange reports whether d's date falls within [start, end] inclusive.
+        TimeInRange(d, start, end time.Time) bool
+        // TimeTruncateToDay strips the time-of-day component from t.
+        TimeTruncateToDay(t time.Time) time.Time
+}
+
+// NewHTTPAppHandlers initialize handlers with each use case according to the requirement for each handlers.
+// It accepts ucs, writer, infra, featureFlag as parameters.
+// It returns non nil pointer HTTPAppHandlers.
+func NewHTTPAppHandlers(ucs *Usecases, infra infraProvider) *HTTPAppHandlers <span class="cov8" title="1">{
+        h := &amp;HTTPAppHandlers{
+                HTTP: HTTPHandlers{
+                        Reconcile: reconcile.NewHandler(ucs.reconcile, infra),
+                },
+        }
+
+        return h
+}</span>
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: ./init.go
+
+// Package main is a generated GoMock package.
+package main
+
+import (
+        csv "encoding/csv"
+        io "io"
+        reflect "reflect"
+        time "time"
+
+        gocsv "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockinfraProvider is a mock of infraProvider interface.
+type MockinfraProvider struct {
+        ctrl     *gomock.Controller
+        recorder *MockinfraProviderMockRecorder
+}
+
+// MockinfraProviderMockRecorder is the mock recorder for MockinfraProvider.
+type MockinfraProviderMockRecorder struct {
+        mock *MockinfraProvider
+}
+
+// NewMockinfraProvider creates a new mock instance.
+func NewMockinfraProvider(ctrl *gomock.Controller) *MockinfraProvider <span class="cov8" title="1">{
+        mock := &amp;MockinfraProvider{ctrl: ctrl}
+        mock.recorder = &amp;MockinfraProviderMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockinfraProvider) EXPECT() *MockinfraProviderMockRecorder <span class="cov0" title="0">{
+        return m.recorder
+}</span>
+
+// CsvNewReader mocks base method.
+func (m *MockinfraProvider) CsvNewReader(r io.Reader) *csv.Reader <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "CsvNewReader", r)
+        ret0, _ := ret[0].(*csv.Reader)
+        return ret0
+}</span>
+
+// CsvNewReader indicates an expected call of CsvNewReader.
+func (mr *MockinfraProviderMockRecorder) CsvNewReader(r interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CsvNewReader", reflect.TypeOf((*MockinfraProvider)(nil).CsvNewReader), r)
+}</span>
+
+// CsvReadAll mocks base method.
+func (m *MockinfraProvider) CsvReadAll(r gocsv.Reader) ([][]string, error) <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "CsvReadAll", r)
+        ret0, _ := ret[0].([][]string)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// CsvReadAll indicates an expected call of CsvReadAll.
+func (mr *MockinfraProviderMockRecorder) CsvReadAll(r interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CsvReadAll", reflect.TypeOf((*MockinfraProvider)(nil).CsvReadAll), r)
+}</span>
+
+// TimeInRange mocks base method.
+func (m *MockinfraProvider) TimeInRange(d, start, end time.Time) bool <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "TimeInRange", d, start, end)
+        ret0, _ := ret[0].(bool)
+        return ret0
+}</span>
+
+// TimeInRange indicates an expected call of TimeInRange.
+func (mr *MockinfraProviderMockRecorder) TimeInRange(d, start, end interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TimeInRange", reflect.TypeOf((*MockinfraProvider)(nil).TimeInRange), d, start, end)
+}</span>
+
+// TimeTruncateToDay mocks base method.
+func (m *MockinfraProvider) TimeTruncateToDay(t time.Time) time.Time <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "TimeTruncateToDay", t)
+        ret0, _ := ret[0].(time.Time)
+        return ret0
+}</span>
+
+// TimeTruncateToDay indicates an expected call of TimeTruncateToDay.
+func (mr *MockinfraProviderMockRecorder) TimeTruncateToDay(t interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TimeTruncateToDay", reflect.TypeOf((*MockinfraProvider)(nil).TimeTruncateToDay), t)
+}</span>
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package main
+
+import (
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction"
+)
+
+// Resources is a collection of usecase to initialize the HTTP app.
+type Resources struct {
+        bank        *bank.Resource
+        transaction *transaction.Resource
+}
+
+// NewUsecases initialize usecases with each service according to the requirement for each usecases.
+func NewResources(csvRepo *csv.Repository) *Resources <span class="cov8" title="1">{
+        resources := &amp;Resources{
+                bank:        bank.NewResource(csvRepo),
+                transaction: transaction.NewResource(csvRepo),
+        }
+        return resources
+}</span>
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package main
+
+import (
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction"
+)
+
+// Services is a collection of usecase to initialize the HTTP app.
+type Services struct {
+        bank        *bank.Service
+        transaction *transaction.Service
+}
+
+// NewService initialize service with each service according to the requirement for each usecases.
+func NewService(resource *Resources) *Services <span class="cov8" title="1">{
+        usecases := &amp;Services{
+                bank:        bank.NewService(resource.bank),
+                transaction: transaction.NewService(resource.transaction),
+        }
+        return usecases
+}</span>
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">package main
+
+import "github.com/ferdianexe/simple-statement-reconciliation/internal/usecase/reconcile"
+
+// Usecases is a collection of usecase to initialize the HTTP app.
+type Usecases struct {
+        reconcile *reconcile.Usecase
+}
+
+// NewUsecases initialize usecases with each service according to the requirement for each usecases.
+func NewUsecases(services *Services, infra infraProvider) *Usecases <span class="cov8" title="1">{
+        usecases := &amp;Usecases{
+                reconcile: reconcile.NewUsecase(services.bank, services.transaction, infra),
+        }
+        return usecases
+}</span>
+</pre>
+		
+		<pre class="file" id="file5" style="display: none">// Command reconcile runs the transaction reconciliation service as a
+// one-off batch CLI (as opposed to cmd/server, which runs the same
+// underlying logic behind an HTTP API).
+//
+// Example:
+//
+//        go run ./cmd/reconcile \
+//          -sys testdata/system_transactions.csv \
+//          -banks "BCA:testdata/bank_bca.csv,BNI:testdata/bank_bni.csv" \
+//          -start 2024-01-01 -end 2024-01-31
+package main
+
+import (
+        "context"
+        "encoding/json"
+        "flag"
+        "fmt"
+        "log"
+        "os"
+        "strings"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gotime"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/usecase/reconcile"
+)
+
+const dateLayout = "2006-01-02"
+
+func main() <span class="cov0" title="0">{
+        sysPath := flag.String("sys", "", "path to system transactions CSV (required)")
+        banksFlag := flag.String("banks", "", `comma-separated "BankName:path.csv" pairs (required), e.g. "BCA:bca.csv,BNI:bni.csv"`)
+        startStr := flag.String("start", "", "reconciliation start date, YYYY-MM-DD (required)")
+        endStr := flag.String("end", "", "reconciliation end date, YYYY-MM-DD (required)")
+        asJSON := flag.Bool("json", false, "print the summary as JSON instead of plain text")
+        flag.Parse()
+
+        if *sysPath == "" || *banksFlag == "" || *startStr == "" || *endStr == "" </span><span class="cov0" title="0">{
+                flag.Usage()
+                os.Exit(2)
+        }</span>
+
+        <span class="cov0" title="0">banks, err := parseBanksFlag(*banksFlag)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("invalid -banks: %v", err)
+        }</span>
+
+        <span class="cov0" title="0">start, err := time.Parse(dateLayout, *startStr)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("invalid -start date: %v", err)
+        }</span>
+        <span class="cov0" title="0">end, err := time.Parse(dateLayout, *endStr)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("invalid -end date: %v", err)
+        }</span>
+
+        <span class="cov0" title="0">infra := infrastructure.NewService(infrastructure.NewServiceParam{
+                Csv:  gocsv.Default,
+                Time: gotime.Default,
+        })
+        csvRepo := csv.NewRepository(infra)
+        rsc := NewResources(csvRepo)
+        services := NewService(rsc)
+        usecaseApp := NewUsecases(services, infra)
+
+        summary, err := usecaseApp.reconcile.Reconcile(context.Background(), reconcile.ReconcileRequest{
+                SysPath: *sysPath,
+                Banks:   banks,
+                Start:   start,
+                End:     end,
+        })
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("reconcile: %v", err)
+        }</span>
+
+        <span class="cov0" title="0">if *asJSON </span><span class="cov0" title="0">{
+                enc := json.NewEncoder(os.Stdout)
+                enc.SetIndent("", "  ")
+                if err := enc.Encode(summary); err != nil </span><span class="cov0" title="0">{
+                        log.Fatalf("encoding summary: %v", err)
+                }</span>
+                <span class="cov0" title="0">return</span>
+        }
+
+        <span class="cov0" title="0">printSummary(summary)</span>
+}
+
+// parseBanksFlag turns "BCA:path.csv,BNI:path2.csv" into []service.BankFile.
+// This string format is a CLI-only convenience; the HTTP API (cmd/server)
+// takes the equivalent structured JSON directly.
+func parseBanksFlag(raw string) ([]reconcile.BankFileRequest, error) <span class="cov0" title="0">{
+        var banks []reconcile.BankFileRequest
+        for _, pair := range strings.Split(raw, ",") </span><span class="cov0" title="0">{
+                parts := strings.SplitN(strings.TrimSpace(pair), ":", 2)
+                if len(parts) != 2 || parts[0] == "" || parts[1] == "" </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("invalid entry %q, expected BankName:path.csv", pair)
+                }</span>
+                <span class="cov0" title="0">banks = append(banks, reconcile.BankFileRequest{Name: parts[0], Path: parts[1]})</span>
+        }
+        <span class="cov0" title="0">return banks, nil</span>
+}
+
+func printSummary(s reconcile.ReconcileSummary) <span class="cov0" title="0">{
+        fmt.Printf("Total processed:   %d\n", s.TotalProcessed)
+        fmt.Printf("Total matched:     %d\n", s.TotalMatched)
+        fmt.Printf("Total unmatched:   %d\n", s.TotalUnmatched)
+        fmt.Printf("Total discrepancy: %.2f\n\n", s.TotalDiscrepancy)
+
+        if len(s.UnmatchedSystem) &gt; 0 </span><span class="cov0" title="0">{
+                fmt.Println("Unmatched system transactions:")
+                for _, t := range s.UnmatchedSystem </span><span class="cov0" title="0">{
+                        fmt.Printf("  - %s | %.2f | %s | %s\n", t.TrxID, t.Amount, t.Type, t.TransactionTime.Format(time.RFC3339))
+                }</span>
+                <span class="cov0" title="0">fmt.Println()</span>
+        }
+
+        <span class="cov0" title="0">if len(s.UnmatchedBank) &gt; 0 </span><span class="cov0" title="0">{
+                fmt.Println("Unmatched bank statement records:")
+                for _, group := range s.UnmatchedBank </span><span class="cov0" title="0">{
+                        fmt.Printf("  %s:\n", group.Bank)
+                        for _, r := range group.Records </span><span class="cov0" title="0">{
+                                fmt.Printf("    - %s | %.2f | %s\n", r.UniqueID, r.Amount, r.Date.Format(dateLayout))
+                        }</span>
+                }
+        }
+}
+</pre>
+		
+		<pre class="file" id="file6" style="display: none">package main
+
+import (
+        "encoding/csv"
+        "io"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/server/http/reconcile"
+)
+
+//go:generate mockgen -source=./init.go -destination=./init_mock.go -package=main
+
+// HTTPAppHandlers contains list of http and nsq handler to support main app.
+type HTTPAppHandlers struct {
+        HTTP HTTPHandlers
+}
+
+// HTTPHandlers contains a list of http handler to support main app.
+type HTTPHandlers struct {
+        Reconcile *reconcile.Handler
+}
+
+// infraProvider is the interface that wraps the infrastructure methods needed by handler.
+type infraProvider interface {
+        // CsvNewReader returns a new csv.Reader that reads from r.
+        CsvNewReader(r io.Reader) *csv.Reader
+        // CsvReadAll reads all the remaining records from r.
+        CsvReadAll(r gocsv.Reader) ([][]string, error)
+        // TimeInRange reports whether d's date falls within [start, end] inclusive.
+        TimeInRange(d, start, end time.Time) bool
+        // TimeTruncateToDay strips the time-of-day component from t.
+        TimeTruncateToDay(t time.Time) time.Time
+}
+
+// NewHTTPAppHandlers initialize handlers with each use case according to the requirement for each handlers.
+// It accepts ucs, writer, infra, featureFlag as parameters.
+// It returns non nil pointer HTTPAppHandlers.
+func NewHTTPAppHandlers(ucs *Usecases, infra infraProvider) *HTTPAppHandlers <span class="cov8" title="1">{
+        h := &amp;HTTPAppHandlers{
+                HTTP: HTTPHandlers{
+                        Reconcile: reconcile.NewHandler(ucs.reconcile, infra),
+                },
+        }
+
+        return h
+}</span>
+</pre>
+		
+		<pre class="file" id="file7" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: ./init.go
+
+// Package main is a generated GoMock package.
+package main
+
+import (
+        csv "encoding/csv"
+        io "io"
+        reflect "reflect"
+        time "time"
+
+        gocsv "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockinfraProvider is a mock of infraProvider interface.
+type MockinfraProvider struct {
+        ctrl     *gomock.Controller
+        recorder *MockinfraProviderMockRecorder
+}
+
+// MockinfraProviderMockRecorder is the mock recorder for MockinfraProvider.
+type MockinfraProviderMockRecorder struct {
+        mock *MockinfraProvider
+}
+
+// NewMockinfraProvider creates a new mock instance.
+func NewMockinfraProvider(ctrl *gomock.Controller) *MockinfraProvider <span class="cov8" title="1">{
+        mock := &amp;MockinfraProvider{ctrl: ctrl}
+        mock.recorder = &amp;MockinfraProviderMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockinfraProvider) EXPECT() *MockinfraProviderMockRecorder <span class="cov0" title="0">{
+        return m.recorder
+}</span>
+
+// CsvNewReader mocks base method.
+func (m *MockinfraProvider) CsvNewReader(r io.Reader) *csv.Reader <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "CsvNewReader", r)
+        ret0, _ := ret[0].(*csv.Reader)
+        return ret0
+}</span>
+
+// CsvNewReader indicates an expected call of CsvNewReader.
+func (mr *MockinfraProviderMockRecorder) CsvNewReader(r interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CsvNewReader", reflect.TypeOf((*MockinfraProvider)(nil).CsvNewReader), r)
+}</span>
+
+// CsvReadAll mocks base method.
+func (m *MockinfraProvider) CsvReadAll(r gocsv.Reader) ([][]string, error) <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "CsvReadAll", r)
+        ret0, _ := ret[0].([][]string)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// CsvReadAll indicates an expected call of CsvReadAll.
+func (mr *MockinfraProviderMockRecorder) CsvReadAll(r interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CsvReadAll", reflect.TypeOf((*MockinfraProvider)(nil).CsvReadAll), r)
+}</span>
+
+// TimeInRange mocks base method.
+func (m *MockinfraProvider) TimeInRange(d, start, end time.Time) bool <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "TimeInRange", d, start, end)
+        ret0, _ := ret[0].(bool)
+        return ret0
+}</span>
+
+// TimeInRange indicates an expected call of TimeInRange.
+func (mr *MockinfraProviderMockRecorder) TimeInRange(d, start, end interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TimeInRange", reflect.TypeOf((*MockinfraProvider)(nil).TimeInRange), d, start, end)
+}</span>
+
+// TimeTruncateToDay mocks base method.
+func (m *MockinfraProvider) TimeTruncateToDay(t time.Time) time.Time <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "TimeTruncateToDay", t)
+        ret0, _ := ret[0].(time.Time)
+        return ret0
+}</span>
+
+// TimeTruncateToDay indicates an expected call of TimeTruncateToDay.
+func (mr *MockinfraProviderMockRecorder) TimeTruncateToDay(t interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TimeTruncateToDay", reflect.TypeOf((*MockinfraProvider)(nil).TimeTruncateToDay), t)
+}</span>
+</pre>
+		
+		<pre class="file" id="file8" style="display: none">package main
+
+import (
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction"
+)
+
+// Resources is a collection of usecase to initialize the HTTP app.
+type Resources struct {
+        bank        *bank.Resource
+        transaction *transaction.Resource
+}
+
+// NewUsecases initialize usecases with each service according to the requirement for each usecases.
+func NewResources(csvRepo *csv.Repository) *Resources <span class="cov8" title="1">{
+        resources := &amp;Resources{
+                bank:        bank.NewResource(csvRepo),
+                transaction: transaction.NewResource(csvRepo),
+        }
+        return resources
+}</span>
+</pre>
+		
+		<pre class="file" id="file9" style="display: none">package main
+
+import (
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction"
+)
+
+// Services is a collection of usecase to initialize the HTTP app.
+type Services struct {
+        bank        *bank.Service
+        transaction *transaction.Service
+}
+
+// NewService initialize service with each service according to the requirement for each usecases.
+func NewService(resource *Resources) *Services <span class="cov8" title="1">{
+        usecases := &amp;Services{
+                bank:        bank.NewService(resource.bank),
+                transaction: transaction.NewService(resource.transaction),
+        }
+        return usecases
+}</span>
+</pre>
+		
+		<pre class="file" id="file10" style="display: none">package main
+
+import (
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/usecase/reconcile"
+)
+
+// Usecases is a collection of usecase to initialize the HTTP app.
+type Usecases struct {
+        reconcile *reconcile.Usecase
+}
+
+// NewUsecases initialize usecases with each service according to the requirement for each usecases.
+func NewUsecases(services *Services, infra infraProvider) *Usecases <span class="cov8" title="1">{
+        usecases := &amp;Usecases{
+                reconcile: reconcile.NewUsecase(services.bank, services.transaction, infra),
+        }
+        return usecases
+}</span>
+</pre>
+		
+		<pre class="file" id="file11" style="display: none">// Command server runs the reconciliation service as an HTTP server.
+//
+// Example:
+//
+//        go run ./cmd/server -addr :8080
+//
+//        curl -X POST localhost:8080/reconcile -d '{
+//          "sys_path": "testdata/system_transactions.csv",
+//          "banks": [
+//            {"name": "BCA", "path": "testdata/bank_bca.csv"},
+//            {"name": "BNI", "path": "testdata/bank_bni.csv"}
+//          ],
+//          "start": "2024-01-01",
+//          "end": "2024-01-31"
+//        }'
+package main
+
+import (
+        "flag"
+        "log"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gotime"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/server/http"
+)
+
+func main() <span class="cov0" title="0">{
+        addr := flag.String("addr", ":8080", "address for the HTTP server to listen on")
+        flag.Parse()
+        infra := infrastructure.NewService(infrastructure.NewServiceParam{
+                Csv:  gocsv.Default,
+                Time: gotime.Default,
+        })
+        csvRepo := csv.NewRepository(infra)
+        rsc := NewResources(csvRepo)
+        services := NewService(rsc)
+        usecaseApp := NewUsecases(services, infra)
+        httpAppHandlers := NewHTTPAppHandlers(usecaseApp, infra)
+        srv := http.NewServer(http.Handlers{
+                Reconcile: httpAppHandlers.HTTP.Reconcile,
+        })
+        if err := srv.Run(*addr); err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("server error: %v", err)
+        }</span>
+}
+</pre>
+		
+		<pre class="file" id="file12" style="display: none">package gocsv
+
+import (
+        // golang package
+        "encoding/csv"
+        "io"
+)
+
+//go:generate mockgen -source=./gocsv.go -destination=./gocsv_mock.go -package=gocsv
+
+// Default represents the default instance of goCsv.
+var Default = goCsv{}
+
+// goCsv represents an empty struct wrapping encoding/csv.
+type goCsv struct{}
+
+// Reader represents the method interface for reading CSV records. Since
+// *csv.Reader (returned by NewReader) already implements Read and
+// ReadAll, it satisfies this interface directly - callers can pass
+// either a real *csv.Reader or a mock wherever Reader is expected.
+type Reader interface {
+        // Read reads one record (a slice of fields) from r.
+        Read() (record []string, err error)
+
+        // ReadAll reads all the remaining records from r.
+        // Each record is a slice of fields.
+        // A successful call returns err == nil, not err == io.EOF. Because ReadAll is
+        // defined to read until EOF, it does not treat end of file as an error to be
+        // reported.
+        ReadAll() (records [][]string, err error)
+}
+
+// NewReader returns a new Reader that reads from r.
+func (g goCsv) NewReader(r io.Reader) *csv.Reader <span class="cov8" title="1">{
+        return csv.NewReader(r)
+}</span>
+
+// Read reads one record (a slice of fields) from r. A returned error of
+// io.EOF signals the end of input, same as the underlying csv.Reader.
+func (g goCsv) Read(r Reader) (record []string, err error) <span class="cov8" title="1">{
+        return r.Read()
+}</span>
+
+// ReadAll reads all the remaining records from r.
+// Each record is a slice of fields.
+// A successful call returns err == nil, not err == io.EOF. Because ReadAll is
+// defined to read until EOF, it does not treat end of file as an error to be
+// reported.
+func (g goCsv) ReadAll(r Reader) ([][]string, error) <span class="cov8" title="1">{
+        records, err := r.ReadAll()
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">return records, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file13" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: ./gocsv.go
+
+// Package gocsv is a generated GoMock package.
+package gocsv
+
+import (
+        reflect "reflect"
+
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockReader is a mock of Reader interface.
+type MockReader struct {
+        ctrl     *gomock.Controller
+        recorder *MockReaderMockRecorder
+}
+
+// MockReaderMockRecorder is the mock recorder for MockReader.
+type MockReaderMockRecorder struct {
+        mock *MockReader
+}
+
+// NewMockReader creates a new mock instance.
+func NewMockReader(ctrl *gomock.Controller) *MockReader <span class="cov0" title="0">{
+        mock := &amp;MockReader{ctrl: ctrl}
+        mock.recorder = &amp;MockReaderMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockReader) EXPECT() *MockReaderMockRecorder <span class="cov0" title="0">{
+        return m.recorder
+}</span>
+
+// Read mocks base method.
+func (m *MockReader) Read() ([]string, error) <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "Read")
+        ret0, _ := ret[0].([]string)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// Read indicates an expected call of Read.
+func (mr *MockReaderMockRecorder) Read() *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Read", reflect.TypeOf((*MockReader)(nil).Read))
+}</span>
+
+// ReadAll mocks base method.
+func (m *MockReader) ReadAll() ([][]string, error) <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "ReadAll")
+        ret0, _ := ret[0].([][]string)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// ReadAll indicates an expected call of ReadAll.
+func (mr *MockReaderMockRecorder) ReadAll() *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ReadAll", reflect.TypeOf((*MockReader)(nil).ReadAll))
+}</span>
+</pre>
+		
+		<pre class="file" id="file14" style="display: none">package gotime
+
+import (
+        // golang package
+        "time"
+)
+
+//go:generate mockgen -source=./gotime.go -destination=./gotime_mock.go -package=gotime
+
+// Default represents the default instance of goTime.
+var Default = goTime{}
+
+// goTime represents an empty struct wrapping time-related helpers. It
+// doesn't wrap a swappable external resource the way goCsv wraps
+// *csv.Reader, so it needs no inner Reader-style interface of its own -
+// the aggregating infrastructure.Service is what gets mocked by callers.
+type goTime struct{}
+
+// TruncateToDay strips the time-of-day component. Useful when one side
+// of a comparison carries a full timestamp and the other only carries
+// a date, since both need to be compared at day granularity.
+func (g goTime) TruncateToDay(t time.Time) time.Time <span class="cov8" title="1">{
+        return time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
+}</span>
+
+// InRange reports whether d's date falls within [start, end] inclusive.
+// start and end are expected to already be day-truncated by the caller.
+func (g goTime) InRange(d, start, end time.Time) bool <span class="cov8" title="1">{
+        d = g.TruncateToDay(d)
+        return !d.Before(start) &amp;&amp; !d.After(end)
+}</span>
+
+// Now returns the current local time.
+func (g goTime) Now() time.Time <span class="cov0" title="0">{
+        return time.Now()
+}</span>
+</pre>
+		
+		<pre class="file" id="file15" style="display: none">package infrastructure
+
+import (
+        "encoding/csv"
+        "io"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+)
+
+// timeManager holds methods for golang Time.
+type timeManager interface {
+        // TruncateToDay strips the time-of-day component. Useful when one side
+        // of a comparison carries a full timestamp and the other only carries
+        // a date, since both need to be compared at day granularity.
+        TruncateToDay(t time.Time) time.Time
+
+        // Now returns the current local time.
+        Now() time.Time
+
+        // InRange reports whether d's date falls within [start, end] inclusive.
+        // start and end are expected to already be day-truncated by the caller.
+        InRange(d, start, end time.Time) bool
+}
+
+// csvManager holds methods for csv
+type csvManager interface {
+        // NewReader returns a new Reader that reads from r.
+        NewReader(r io.Reader) *csv.Reader
+
+        // Read reads one record (a slice of fields) from r.
+        Read(r gocsv.Reader) (record []string, err error)
+
+        // ReadAll reads all the remaining records from r.
+        // Each record is a slice of fields.
+        // A successful call returns err == nil, not err == io.EOF. Because ReadAll is
+        // defined to read until EOF, it does not treat end of file as an error to be
+        // reported.
+        ReadAll(r gocsv.Reader) ([][]string, error)
+}
+
+// NewServiceParam is the set of dependencies required to construct a
+// new infrastructure Service.
+type NewServiceParam struct {
+        Csv  csvManager
+        Time timeManager
+}
+
+// Service is an internal implementation of infrastructure service.
+// It wraps methods for provided infras.
+type Service struct {
+        csvManager  csvManager
+        timeManager timeManager
+}
+
+// NewService returns an instance of the infrastructure Service.
+func NewService(param NewServiceParam) *Service <span class="cov0" title="0">{
+        return &amp;Service{
+                csvManager:  param.Csv,
+                timeManager: param.Time,
+        }
+}</span>
+
+// CsvNewReader returns a new csv.Reader that reads from r.
+func (svc *Service) CsvNewReader(r io.Reader) *csv.Reader <span class="cov0" title="0">{
+        return svc.csvManager.NewReader(r)
+}</span>
+
+// CsvRead reads one record (a slice of fields) from r.
+func (svc *Service) CsvRead(r gocsv.Reader) ([]string, error) <span class="cov0" title="0">{
+        return svc.csvManager.Read(r)
+}</span>
+
+// CsvReadAll reads all the remaining records from r.
+func (svc *Service) CsvReadAll(r gocsv.Reader) ([][]string, error) <span class="cov0" title="0">{
+        return svc.csvManager.ReadAll(r)
+}</span>
+
+// TimeTruncateToDay strips the time-of-day component from t.
+func (svc *Service) TimeTruncateToDay(t time.Time) time.Time <span class="cov0" title="0">{
+        return svc.timeManager.TruncateToDay(t)
+}</span>
+
+// TimeInRange reports whether d's date falls within [start, end] inclusive.
+func (svc *Service) TimeInRange(d, start, end time.Time) bool <span class="cov0" title="0">{
+        return svc.timeManager.InRange(d, start, end)
+}</span>
+
+// GetTimeNow get time now.
+//
+// It returns time.Time when successful.
+// Otherwise, empty time.Time will be returned.
+func (svc *Service) GetTimeNow() time.Time <span class="cov0" title="0">{
+        return svc.timeManager.Now()
+}</span>
+</pre>
+		
+		<pre class="file" id="file16" style="display: none">package csv
+
+import (
+        "context"
+        "fmt"
+        "os"
+        "strconv"
+        "strings"
+        "time"
+)
+
+const (
+        systemTimeLayout = time.RFC3339
+        bankDateLayout   = "2006-01-02"
+)
+
+// ParseSystemTransactions reads the internal system transaction CSV
+func (svc *Repository) ParseSystemTransactions(ctx context.Context, path string, start, end time.Time) ([]Transaction, error) <span class="cov8" title="1">{
+        f, err := os.Open(path)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("open system transactions file: %w", err)
+        }</span>
+        <span class="cov8" title="1">defer f.Close()
+
+        start = svc.infra.TimeTruncateToDay(start)
+        end = svc.infra.TimeTruncateToDay(end)
+
+        reader := svc.infra.CsvNewReader(f)
+        records, err := svc.infra.CsvReadAll(reader)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("read csv: %w", err)
+        }</span>
+        <span class="cov8" title="1">if len(records) == 0 </span><span class="cov8" title="1">{
+                return nil, nil
+        }</span>
+
+        <span class="cov8" title="1">out := make([]Transaction, 0, len(records)-1)
+        for i, rec := range records[1:] </span><span class="cov8" title="1">{ // records[0] is the header
+                line := i + 2
+                if len(rec) &lt; 4 </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("line %d: expected 4 columns, got %d", line, len(rec))
+                }</span>
+
+                <span class="cov8" title="1">amount, err := strconv.ParseFloat(strings.TrimSpace(rec[1]), 64)
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("line %d: invalid amount %q: %w", line, rec[1], err)
+                }</span>
+                <span class="cov8" title="1">trxType := TrxType(strings.ToUpper(strings.TrimSpace(rec[2])))
+                if trxType != Debit &amp;&amp; trxType != Credit </span><span class="cov8" title="1">{
+                        return nil, fmt.Errorf("line %d: invalid type %q", line, rec[2])
+                }</span>
+                <span class="cov8" title="1">ts, err := time.Parse(systemTimeLayout, strings.TrimSpace(rec[3]))
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("line %d: invalid transaction_time %q: %w", line, rec[3], err)
+                }</span>
+
+                <span class="cov8" title="1">if !svc.infra.TimeInRange(ts, start, end) </span><span class="cov8" title="1">{
+                        continue</span>
+                }
+
+                <span class="cov8" title="1">out = append(out, Transaction{
+                        TrxID:           strings.TrimSpace(rec[0]),
+                        Amount:          amount,
+                        Type:            trxType,
+                        TransactionTime: ts,
+                })</span>
+        }
+        <span class="cov8" title="1">return out, nil</span>
+}
+
+// ParseBankStatement reads one bank statement CSV file
+func (svc *Repository) ParseBankStatement(ctx context.Context, path string, bankName string, start, end time.Time) ([]BankStatement, error) <span class="cov8" title="1">{
+        f, err := os.Open(path)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("open bank statement file %s: %w", path, err)
+        }</span>
+        <span class="cov8" title="1">defer f.Close()
+
+        start = svc.infra.TimeTruncateToDay(start)
+        end = svc.infra.TimeTruncateToDay(end)
+
+        reader := svc.infra.CsvNewReader(f)
+        records, err := svc.infra.CsvReadAll(reader)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("%s: read csv: %w", bankName, err)
+        }</span>
+        <span class="cov8" title="1">if len(records) == 0 </span><span class="cov0" title="0">{
+                return nil, nil
+        }</span>
+
+        <span class="cov8" title="1">out := make([]BankStatement, 0, len(records)-1)
+        for i, rec := range records[1:] </span><span class="cov8" title="1">{ // records[0] is the header
+                line := i + 2
+                if len(rec) &lt; 3 </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("%s line %d: expected 3 columns, got %d", bankName, line, len(rec))
+                }</span>
+
+                <span class="cov8" title="1">amount, err := strconv.ParseFloat(strings.TrimSpace(rec[1]), 64)
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("%s line %d: invalid amount %q: %w", bankName, line, rec[1], err)
+                }</span>
+                <span class="cov8" title="1">date, err := time.Parse(bankDateLayout, strings.TrimSpace(rec[2]))
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("%s line %d: invalid date %q: %w", bankName, line, rec[2], err)
+                }</span>
+
+                <span class="cov8" title="1">if !svc.infra.TimeInRange(date, start, end) </span><span class="cov8" title="1">{
+                        continue</span>
+                }
+
+                <span class="cov8" title="1">out = append(out, BankStatement{
+                        UniqueID: strings.TrimSpace(rec[0]),
+                        Amount:   amount,
+                        Date:     date,
+                        Bank:     bankName,
+                })</span>
+        }
+        <span class="cov8" title="1">return out, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file17" style="display: none">package csv
+
+import (
+        "encoding/csv"
+        "io"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+)
+
+//go:generate mockgen -source=repo.go -destination=repo_mock.go -package=csv
+
+// infraProvider provides the infrastructure primitives this repository
+type infraProvider interface {
+        // CsvNewReader returns a new csv.Reader that reads from r.
+        CsvNewReader(r io.Reader) *csv.Reader
+        // CsvReadAll reads all the remaining records from r.
+        CsvReadAll(r gocsv.Reader) ([][]string, error)
+        // TimeTruncateToDay strips the time-of-day component from t.
+        TimeTruncateToDay(t time.Time) time.Time
+        // TimeInRange reports whether d's date falls within [start, end] inclusive.
+        TimeInRange(d, start, end time.Time) bool
+}
+
+// Repository type of csv-backed repository.
+type Repository struct {
+        infra infraProvider
+}
+
+// NewRepository instantiates the csv repository with the given
+// infrastructure dependency.
+func NewRepository(infra infraProvider) *Repository <span class="cov8" title="1">{
+        return &amp;Repository{infra: infra}
+}</span>
+</pre>
+		
+		<pre class="file" id="file18" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: repo.go
+
+// Package csv is a generated GoMock package.
+package csv
+
+import (
+        csv "encoding/csv"
+        io "io"
+        reflect "reflect"
+        time "time"
+
+        gocsv "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockinfraProvider is a mock of infraProvider interface.
+type MockinfraProvider struct {
+        ctrl     *gomock.Controller
+        recorder *MockinfraProviderMockRecorder
+}
+
+// MockinfraProviderMockRecorder is the mock recorder for MockinfraProvider.
+type MockinfraProviderMockRecorder struct {
+        mock *MockinfraProvider
+}
+
+// NewMockinfraProvider creates a new mock instance.
+func NewMockinfraProvider(ctrl *gomock.Controller) *MockinfraProvider <span class="cov8" title="1">{
+        mock := &amp;MockinfraProvider{ctrl: ctrl}
+        mock.recorder = &amp;MockinfraProviderMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockinfraProvider) EXPECT() *MockinfraProviderMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// CsvNewReader mocks base method.
+func (m *MockinfraProvider) CsvNewReader(r io.Reader) *csv.Reader <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "CsvNewReader", r)
+        ret0, _ := ret[0].(*csv.Reader)
+        return ret0
+}</span>
+
+// CsvNewReader indicates an expected call of CsvNewReader.
+func (mr *MockinfraProviderMockRecorder) CsvNewReader(r interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CsvNewReader", reflect.TypeOf((*MockinfraProvider)(nil).CsvNewReader), r)
+}</span>
+
+// CsvReadAll mocks base method.
+func (m *MockinfraProvider) CsvReadAll(r gocsv.Reader) ([][]string, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "CsvReadAll", r)
+        ret0, _ := ret[0].([][]string)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// CsvReadAll indicates an expected call of CsvReadAll.
+func (mr *MockinfraProviderMockRecorder) CsvReadAll(r interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CsvReadAll", reflect.TypeOf((*MockinfraProvider)(nil).CsvReadAll), r)
+}</span>
+
+// TimeInRange mocks base method.
+func (m *MockinfraProvider) TimeInRange(d, start, end time.Time) bool <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "TimeInRange", d, start, end)
+        ret0, _ := ret[0].(bool)
+        return ret0
+}</span>
+
+// TimeInRange indicates an expected call of TimeInRange.
+func (mr *MockinfraProviderMockRecorder) TimeInRange(d, start, end interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TimeInRange", reflect.TypeOf((*MockinfraProvider)(nil).TimeInRange), d, start, end)
+}</span>
+
+// TimeTruncateToDay mocks base method.
+func (m *MockinfraProvider) TimeTruncateToDay(t time.Time) time.Time <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "TimeTruncateToDay", t)
+        ret0, _ := ret[0].(time.Time)
+        return ret0
+}</span>
+
+// TimeTruncateToDay indicates an expected call of TimeTruncateToDay.
+func (mr *MockinfraProviderMockRecorder) TimeTruncateToDay(t interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TimeTruncateToDay", reflect.TypeOf((*MockinfraProvider)(nil).TimeTruncateToDay), t)
+}</span>
+</pre>
+		
+		<pre class="file" id="file19" style="display: none">package reconcile
+
+import (
+        "context"
+        "encoding/csv"
+        "io"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/usecase/reconcile"
+)
+
+//go:generate mockgen -source=handler.go -destination=handler_mock.go -package=reconcile
+
+// reconcileUsecaseManager provides the required action usecase methods.
+type reconcileUsecaseManager interface {
+        // Reconcile performs reconciliation process.
+        Reconcile(ctx context.Context, request reconcile.ReconcileRequest) (reconcile.ReconcileSummary, error)
+        // ReconcileFromRecords performs reconciliation on already-parsed and
+        // already-filtered records, used by the CSV-upload endpoint.
+        ReconcileFromRecords(ctx context.Context, sysTrx []reconcile.SystemTransaction, bankStmts []reconcile.BankStatement, start, end time.Time) (reconcile.ReconcileSummary, error)
+}
+
+// infraProvider provides the infrastructure primitives this handler
+// needs for reading uploaded CSV content and applying date-range
+// filtering, injected so both can be mocked in tests rather than this
+// layer calling encoding/csv or gotime directly.
+type infraProvider interface {
+        // CsvNewReader returns a new csv.Reader that reads from r.
+        CsvNewReader(r io.Reader) *csv.Reader
+        // CsvReadAll reads all the remaining records from r.
+        CsvReadAll(r gocsv.Reader) ([][]string, error)
+        // TimeInRange reports whether d's date falls within [start, end] inclusive.
+        TimeInRange(d, start, end time.Time) bool
+}
+
+// Handler type of reconcile handler.
+type Handler struct {
+        reconcile reconcileUsecaseManager
+        infra     infraProvider
+}
+
+// NewHandler instantiates reconcile handler.
+func NewHandler(reconcile reconcileUsecaseManager, infra infraProvider) *Handler <span class="cov8" title="1">{
+        return &amp;Handler{
+                reconcile: reconcile,
+                infra:     infra,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file20" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: handler.go
+
+// Package reconcile is a generated GoMock package.
+package reconcile
+
+import (
+        context "context"
+        csv "encoding/csv"
+        io "io"
+        reflect "reflect"
+        time "time"
+
+        gocsv "github.com/ferdianexe/simple-statement-reconciliation/internal/infrastructure/gocsv"
+        reconcile "github.com/ferdianexe/simple-statement-reconciliation/internal/usecase/reconcile"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockreconcileUsecaseManager is a mock of reconcileUsecaseManager interface.
+type MockreconcileUsecaseManager struct {
+        ctrl     *gomock.Controller
+        recorder *MockreconcileUsecaseManagerMockRecorder
+}
+
+// MockreconcileUsecaseManagerMockRecorder is the mock recorder for MockreconcileUsecaseManager.
+type MockreconcileUsecaseManagerMockRecorder struct {
+        mock *MockreconcileUsecaseManager
+}
+
+// NewMockreconcileUsecaseManager creates a new mock instance.
+func NewMockreconcileUsecaseManager(ctrl *gomock.Controller) *MockreconcileUsecaseManager <span class="cov8" title="1">{
+        mock := &amp;MockreconcileUsecaseManager{ctrl: ctrl}
+        mock.recorder = &amp;MockreconcileUsecaseManagerMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockreconcileUsecaseManager) EXPECT() *MockreconcileUsecaseManagerMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// Reconcile mocks base method.
+func (m *MockreconcileUsecaseManager) Reconcile(ctx context.Context, request reconcile.ReconcileRequest) (reconcile.ReconcileSummary, error) <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "Reconcile", ctx, request)
+        ret0, _ := ret[0].(reconcile.ReconcileSummary)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// Reconcile indicates an expected call of Reconcile.
+func (mr *MockreconcileUsecaseManagerMockRecorder) Reconcile(ctx, request interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Reconcile", reflect.TypeOf((*MockreconcileUsecaseManager)(nil).Reconcile), ctx, request)
+}</span>
+
+// ReconcileFromRecords mocks base method.
+func (m *MockreconcileUsecaseManager) ReconcileFromRecords(ctx context.Context, sysTrx []reconcile.SystemTransaction, bankStmts []reconcile.BankStatement, start, end time.Time) (reconcile.ReconcileSummary, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "ReconcileFromRecords", ctx, sysTrx, bankStmts, start, end)
+        ret0, _ := ret[0].(reconcile.ReconcileSummary)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// ReconcileFromRecords indicates an expected call of ReconcileFromRecords.
+func (mr *MockreconcileUsecaseManagerMockRecorder) ReconcileFromRecords(ctx, sysTrx, bankStmts, start, end interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ReconcileFromRecords", reflect.TypeOf((*MockreconcileUsecaseManager)(nil).ReconcileFromRecords), ctx, sysTrx, bankStmts, start, end)
+}</span>
+
+// MockinfraProvider is a mock of infraProvider interface.
+type MockinfraProvider struct {
+        ctrl     *gomock.Controller
+        recorder *MockinfraProviderMockRecorder
+}
+
+// MockinfraProviderMockRecorder is the mock recorder for MockinfraProvider.
+type MockinfraProviderMockRecorder struct {
+        mock *MockinfraProvider
+}
+
+// NewMockinfraProvider creates a new mock instance.
+func NewMockinfraProvider(ctrl *gomock.Controller) *MockinfraProvider <span class="cov8" title="1">{
+        mock := &amp;MockinfraProvider{ctrl: ctrl}
+        mock.recorder = &amp;MockinfraProviderMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockinfraProvider) EXPECT() *MockinfraProviderMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// CsvNewReader mocks base method.
+func (m *MockinfraProvider) CsvNewReader(r io.Reader) *csv.Reader <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "CsvNewReader", r)
+        ret0, _ := ret[0].(*csv.Reader)
+        return ret0
+}</span>
+
+// CsvNewReader indicates an expected call of CsvNewReader.
+func (mr *MockinfraProviderMockRecorder) CsvNewReader(r interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CsvNewReader", reflect.TypeOf((*MockinfraProvider)(nil).CsvNewReader), r)
+}</span>
+
+// CsvReadAll mocks base method.
+func (m *MockinfraProvider) CsvReadAll(r gocsv.Reader) ([][]string, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "CsvReadAll", r)
+        ret0, _ := ret[0].([][]string)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// CsvReadAll indicates an expected call of CsvReadAll.
+func (mr *MockinfraProviderMockRecorder) CsvReadAll(r interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CsvReadAll", reflect.TypeOf((*MockinfraProvider)(nil).CsvReadAll), r)
+}</span>
+
+// TimeInRange mocks base method.
+func (m *MockinfraProvider) TimeInRange(d, start, end time.Time) bool <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "TimeInRange", d, start, end)
+        ret0, _ := ret[0].(bool)
+        return ret0
+}</span>
+
+// TimeInRange indicates an expected call of TimeInRange.
+func (mr *MockinfraProviderMockRecorder) TimeInRange(d, start, end interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TimeInRange", reflect.TypeOf((*MockinfraProvider)(nil).TimeInRange), d, start, end)
+}</span>
+</pre>
+		
+		<pre class="file" id="file21" style="display: none">package reconcile
+
+import (
+        "encoding/json"
+        "fmt"
+        "log"
+        "mime/multipart"
+        "net/http"
+        "sort"
+        "strconv"
+        "strings"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/usecase/reconcile"
+)
+
+const (
+        dateLayout = "2006-01-02"
+        // importMaxMemory mirrors net/http's own default for
+        // ParseMultipartForm: parts under this size are kept in memory,
+        // anything larger spills to temp files on disk.
+        importMaxMemory = 32 &lt;&lt; 20 // 32MB
+
+        // systemTransactionsField is the reserved multipart field name for
+        // the system transaction CSV file.
+        systemTransactionsField = "system_transactions"
+)
+
+var (
+        // allowedBanks maps every accepted bank identifier (matched
+        // case-insensitively) to its canonical display name
+        allowedBanks = map[string]string{
+                "BCA":     "BCA",
+                "BNI":     "BNI",
+                "BRI":     "BRI",
+                "MANDIRI": "Mandiri",
+        }
+)
+
+// HandleReconcile handles POST /reconcile. It expects a JSON body with
+// SysPath, Banks (file paths), Start, and End (YYYY-MM-DD), and returns
+// the reconciliation summary as JSON.
+func (h *Handler) HandleReconcile(w http.ResponseWriter, r *http.Request) <span class="cov0" title="0">{
+        if r.Method != http.MethodPost </span><span class="cov0" title="0">{
+                writeError(w, http.StatusMethodNotAllowed, "only POST is supported")
+                return
+        }</span>
+
+        <span class="cov0" title="0">var req ReconcileRequest
+        if err := json.NewDecoder(r.Body).Decode(&amp;req); err != nil </span><span class="cov0" title="0">{
+                writeError(w, http.StatusBadRequest, "invalid JSON body: "+err.Error())
+                return
+        }</span>
+
+        <span class="cov0" title="0">start, err := time.Parse(dateLayout, req.Start)
+        if err != nil </span><span class="cov0" title="0">{
+                writeError(w, http.StatusBadRequest, "invalid start date, expected YYYY-MM-DD: "+err.Error())
+                return
+        }</span>
+        <span class="cov0" title="0">end, err := time.Parse(dateLayout, req.End)
+        if err != nil </span><span class="cov0" title="0">{
+                writeError(w, http.StatusBadRequest, "invalid end date, expected YYYY-MM-DD: "+err.Error())
+                return
+        }</span>
+
+        <span class="cov0" title="0">banks := make([]reconcile.BankFileRequest, 0, len(req.Banks))
+        for _, b := range req.Banks </span><span class="cov0" title="0">{
+                banks = append(banks, reconcile.BankFileRequest{Name: b.Name, Path: b.Path})
+        }</span>
+
+        <span class="cov0" title="0">summary, err := h.reconcile.Reconcile(r.Context(), reconcile.ReconcileRequest{
+                SysPath: req.SysPath,
+                Banks:   banks,
+                Start:   start,
+                End:     end,
+        })
+        if err != nil </span><span class="cov0" title="0">{
+                // Input/file problems are the client's fault here (bad paths,
+                // malformed CSV), so 422 rather than 500.
+                writeError(w, http.StatusUnprocessableEntity, err.Error())
+                return
+        }</span>
+
+        <span class="cov0" title="0">writeReconcileSummary(w, summary)</span>
+}
+
+// HandleReconcileImport handles POST /reconcile/import. It expects a
+// multipart form with "start"/"end" (YYYY-MM-DD) and CSV file fields
+// (system_transactions plus one per bank), and returns the same
+// reconciliation summary shape as HandleReconcile.
+func (h *Handler) HandleReconcileImport(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        if r.Method != http.MethodPost </span><span class="cov8" title="1">{
+                writeError(w, http.StatusMethodNotAllowed, "only POST is supported")
+                return
+        }</span>
+
+        <span class="cov8" title="1">if err := r.ParseMultipartForm(importMaxMemory); err != nil </span><span class="cov8" title="1">{
+                writeError(w, http.StatusBadRequest, "invalid multipart form: "+err.Error())
+                return
+        }</span>
+
+        <span class="cov8" title="1">start, err := time.Parse(dateLayout, r.FormValue("start"))
+        if err != nil </span><span class="cov8" title="1">{
+                writeError(w, http.StatusBadRequest, "invalid start date, expected YYYY-MM-DD: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">end, err := time.Parse(dateLayout, r.FormValue("end"))
+        if err != nil </span><span class="cov8" title="1">{
+                writeError(w, http.StatusBadRequest, "invalid end date, expected YYYY-MM-DD: "+err.Error())
+                return
+        }</span>
+
+        <span class="cov8" title="1">sysTrx, err := h.parseSystemTransactionsMultipart(r, start, end)
+        if err != nil </span><span class="cov8" title="1">{
+                writeError(w, http.StatusUnprocessableEntity, systemTransactionsField+": "+err.Error())
+                return
+        }</span>
+
+        <span class="cov8" title="1">bankStmts, err := h.parseBankStatementsMultipart(r, start, end)
+        if err != nil </span><span class="cov8" title="1">{
+                writeError(w, http.StatusUnprocessableEntity, err.Error())
+                return
+        }</span>
+
+        <span class="cov8" title="1">summary, err := h.reconcile.ReconcileFromRecords(r.Context(), sysTrx, bankStmts, start, end)
+        if err != nil </span><span class="cov8" title="1">{
+                writeError(w, http.StatusUnprocessableEntity, err.Error())
+                return
+        }</span>
+
+        <span class="cov8" title="1">writeReconcileSummary(w, summary)</span>
+}
+
+// parseSystemTransactionsMultipart reads and date-filters the
+// "system_transactions" file field, if present. A missing field returns
+// a nil slice and no error - the request simply has no system-side data.
+func (h *Handler) parseSystemTransactionsMultipart(r *http.Request, start, end time.Time) ([]reconcile.SystemTransaction, error) <span class="cov8" title="1">{
+        file, _, err := r.FormFile(systemTransactionsField)
+        if err == http.ErrMissingFile </span><span class="cov8" title="1">{
+                return nil, nil
+        }</span>
+        <span class="cov8" title="1">if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">defer file.Close()
+
+        reader := h.infra.CsvNewReader(file)
+        records, err := h.infra.CsvReadAll(reader)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("read csv: %w", err)
+        }</span>
+        <span class="cov8" title="1">if len(records) == 0 </span><span class="cov0" title="0">{
+                return nil, nil
+        }</span>
+
+        <span class="cov8" title="1">out := make([]reconcile.SystemTransaction, 0, len(records)-1)
+        for i, rec := range records[1:] </span><span class="cov8" title="1">{ // records[0] is the header
+                line := i + 2
+                if len(rec) &lt; 4 </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("line %d: expected 4 columns, got %d", line, len(rec))
+                }</span>
+
+                <span class="cov8" title="1">amount, err := strconv.ParseFloat(strings.TrimSpace(rec[1]), 64)
+                if err != nil </span><span class="cov8" title="1">{
+                        return nil, fmt.Errorf("line %d: invalid amount %q: %w", line, rec[1], err)
+                }</span>
+                <span class="cov8" title="1">trxType := reconcile.TrxType(strings.ToUpper(strings.TrimSpace(rec[2])))
+                if trxType != reconcile.Debit &amp;&amp; trxType != reconcile.Credit </span><span class="cov8" title="1">{
+                        return nil, fmt.Errorf("line %d: invalid type %q", line, rec[2])
+                }</span>
+                <span class="cov8" title="1">ts, err := time.Parse(time.RFC3339, strings.TrimSpace(rec[3]))
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("line %d: invalid transaction_time %q: %w", line, rec[3], err)
+                }</span>
+
+                <span class="cov8" title="1">if !h.infra.TimeInRange(ts, start, end) </span><span class="cov8" title="1">{
+                        continue</span>
+                }
+
+                <span class="cov8" title="1">out = append(out, reconcile.SystemTransaction{
+                        TrxID:           strings.TrimSpace(rec[0]),
+                        Amount:          amount,
+                        Type:            trxType,
+                        TransactionTime: ts,
+                })</span>
+        }
+        <span class="cov8" title="1">return out, nil</span>
+}
+
+// parseBankStatementsMultipart reads every uploaded bank statement file
+// field name against allowedBanks, and returns the combined, date-
+// filtered records. No bank files at all is not an error - it just
+// means there's nothing to reconcile on the bank side.
+func (h *Handler) parseBankStatementsMultipart(r *http.Request, start, end time.Time) ([]reconcile.BankStatement, error) <span class="cov8" title="1">{
+        if r.MultipartForm == nil </span><span class="cov0" title="0">{
+                return nil, nil
+        }</span>
+
+        <span class="cov8" title="1">var out []reconcile.BankStatement
+        for field, headers := range r.MultipartForm.File </span><span class="cov8" title="1">{
+                if field == systemTransactionsField || len(headers) == 0 </span><span class="cov8" title="1">{
+                        continue</span>
+                }
+
+                <span class="cov8" title="1">bankName, ok := allowedBanks[strings.ToUpper(field)]
+                if !ok </span><span class="cov8" title="1">{
+                        return nil, fmt.Errorf("%s: unsupported bank, allowed: %s", field, allowedBankNames())
+                }</span>
+
+                <span class="cov8" title="1">file, err := headers[0].Open()
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("%s: %w", field, err)
+                }</span>
+
+                <span class="cov8" title="1">stmts, err := h.parseBankStatementFile(file, bankName, start, end)
+                file.Close()
+                if err != nil </span><span class="cov8" title="1">{
+                        return nil, fmt.Errorf("%s: %w", field, err)
+                }</span>
+                <span class="cov8" title="1">out = append(out, stmts...)</span>
+        }
+        <span class="cov8" title="1">return out, nil</span>
+}
+
+// parseBankStatementFile parses a single bank statement CSV, tagging
+// every record with bankName and filtering out rows outside [start, end].
+func (h *Handler) parseBankStatementFile(file multipart.File, bankName string, start, end time.Time) ([]reconcile.BankStatement, error) <span class="cov8" title="1">{
+        reader := h.infra.CsvNewReader(file)
+        records, err := h.infra.CsvReadAll(reader)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("read csv: %w", err)
+        }</span>
+        <span class="cov8" title="1">if len(records) == 0 </span><span class="cov0" title="0">{
+                return nil, nil
+        }</span>
+
+        <span class="cov8" title="1">out := make([]reconcile.BankStatement, 0, len(records)-1)
+        for i, rec := range records[1:] </span><span class="cov8" title="1">{ // records[0] is the header
+                line := i + 2
+                if len(rec) &lt; 3 </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("line %d: expected 3 columns, got %d", line, len(rec))
+                }</span>
+
+                <span class="cov8" title="1">amount, err := strconv.ParseFloat(strings.TrimSpace(rec[1]), 64)
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("line %d: invalid amount %q: %w", line, rec[1], err)
+                }</span>
+                <span class="cov8" title="1">date, err := time.Parse(dateLayout, strings.TrimSpace(rec[2]))
+                if err != nil </span><span class="cov8" title="1">{
+                        return nil, fmt.Errorf("line %d: invalid date %q: %w", line, rec[2], err)
+                }</span>
+
+                <span class="cov8" title="1">if !h.infra.TimeInRange(date, start, end) </span><span class="cov8" title="1">{
+                        continue</span>
+                }
+
+                <span class="cov8" title="1">out = append(out, reconcile.BankStatement{
+                        UniqueID: strings.TrimSpace(rec[0]),
+                        Amount:   amount,
+                        Date:     date,
+                        Bank:     bankName,
+                })</span>
+        }
+        <span class="cov8" title="1">return out, nil</span>
+}
+
+// writeReconcileSummary converts a usecase-layer summary into the
+// HTTP-facing response type and writes it as JSON. Shared by both
+// /reconcile and /reconcile/import so the response shape stays
+// identical regardless of how the input was supplied.
+func writeReconcileSummary(w http.ResponseWriter, summary reconcile.ReconcileSummary) <span class="cov8" title="1">{
+        matched := make([]MatchedPair, 0, len(summary.Matched))
+        for _, m := range summary.Matched </span><span class="cov8" title="1">{
+                matched = append(matched, MatchedPair{
+                        System: SystemTransaction{
+                                TrxID:           m.System.TrxID,
+                                Type:            TrxType(m.System.Type),
+                                Amount:          m.System.Amount,
+                                TransactionTime: m.System.TransactionTime,
+                        },
+                        Bank: BankStatement{
+                                UniqueID: m.Bank.UniqueID,
+                                Amount:   m.Bank.Amount,
+                                Date:     m.Bank.Date,
+                                Bank:     m.Bank.Bank,
+                        },
+                        Discrepancy: m.Discrepancy,
+                })
+        }</span>
+
+        <span class="cov8" title="1">unmatchedSystem := make([]SystemTransaction, 0, len(summary.UnmatchedSystem))
+        for _, u := range summary.UnmatchedSystem </span><span class="cov8" title="1">{
+                unmatchedSystem = append(unmatchedSystem, SystemTransaction{
+                        TrxID:           u.TrxID,
+                        Type:            TrxType(u.Type),
+                        Amount:          u.Amount,
+                        TransactionTime: u.TransactionTime,
+                })
+        }</span>
+
+        <span class="cov8" title="1">unmatchedBank := make([]UnmatchedByBank, 0, len(summary.UnmatchedBank))
+        for _, u := range summary.UnmatchedBank </span><span class="cov8" title="1">{
+                recordBankStmt := make([]BankStatement, 0, len(u.Records))
+                for _, r := range u.Records </span><span class="cov8" title="1">{
+                        recordBankStmt = append(recordBankStmt, BankStatement{
+                                UniqueID: r.UniqueID,
+                                Amount:   r.Amount,
+                                Date:     r.Date,
+                                Bank:     r.Bank,
+                        })
+                }</span>
+                <span class="cov8" title="1">unmatchedBank = append(unmatchedBank, UnmatchedByBank{
+                        Bank:    u.Bank,
+                        Records: recordBankStmt,
+                })</span>
+        }
+
+        <span class="cov8" title="1">unmatchedAmount := make([]MatchedPair, 0, len(summary.AmountMismatch))
+
+        for _, u := range summary.AmountMismatch </span><span class="cov8" title="1">{
+                unmatchedAmount = append(unmatchedAmount, MatchedPair{
+                        System: SystemTransaction{
+                                TrxID:           u.System.TrxID,
+                                Type:            TrxType(u.System.Type),
+                                Amount:          u.System.Amount,
+                                TransactionTime: u.System.TransactionTime,
+                        },
+                        Bank: BankStatement{
+                                UniqueID: u.Bank.UniqueID,
+                                Amount:   u.Bank.Amount,
+                                Date:     u.Bank.Date,
+                                Bank:     u.Bank.Bank,
+                        },
+                        Discrepancy: u.Discrepancy,
+                })
+        }</span>
+
+        <span class="cov8" title="1">srvResult := ReconcileSummary{
+                TotalProcessed:       summary.TotalProcessed,
+                TotalMatched:         summary.TotalMatched,
+                TotalUnmatched:       summary.TotalUnmatched,
+                TotalUnmatchedAmount: summary.TotalUnmatchedAmount,
+                TotalUnmatchedBank:   summary.TotalUnmatchedBank,
+                TotalUnmatchedSystem: summary.TotalUnmatchedSystem,
+                TotalDiscrepancy:     summary.TotalDiscrepancy,
+                Matched:              matched,
+                AmountMismatch:       unmatchedAmount,
+                UnmatchedSystem:      unmatchedSystem,
+                UnmatchedBank:        unmatchedBank,
+        }
+
+        w.Header().Set("Content-Type", "application/json")
+        if err := json.NewEncoder(w).Encode(srvResult); err != nil </span><span class="cov0" title="0">{
+                log.Printf("encoding response: %v", err)
+        }</span>
+}
+
+// writeError writes msg as a JSON error body with the given HTTP status code.
+func writeError(w http.ResponseWriter, status int, msg string) <span class="cov8" title="1">{
+        w.Header().Set("Content-Type", "application/json")
+        w.WriteHeader(status)
+        _ = json.NewEncoder(w).Encode(errorResponse{Error: msg})
+}</span>
+
+// allowedBankNames returns allowedBanks' canonical display names,
+// deduplicated and sorted, for use in error messages.
+func allowedBankNames() string <span class="cov8" title="1">{
+        seen := make(map[string]bool, len(allowedBanks))
+        names := make([]string, 0, len(allowedBanks))
+        for _, name := range allowedBanks </span><span class="cov8" title="1">{
+                if seen[name] </span><span class="cov0" title="0">{
+                        continue</span>
+                }
+                <span class="cov8" title="1">seen[name] = true
+                names = append(names, name)</span>
+        }
+        <span class="cov8" title="1">sort.Strings(names)
+        return strings.Join(names, ", ")</span>
+}
+</pre>
+		
+		<pre class="file" id="file22" style="display: none">package http
+
+import (
+        "log"
+        "net/http"
+)
+
+//go:generate mockgen -source=server.go -destination=server_mock.go -package=http
+
+type reconcileHandler interface {
+        HandleReconcile(w http.ResponseWriter, r *http.Request)
+        // HandleReconcileImport handles the CSV-upload variant of reconciliation.
+        HandleReconcileImport(w http.ResponseWriter, r *http.Request)
+}
+
+// Handlers holds a collection of HTTP handlers provided for server.
+type Handlers struct {
+        Reconcile reconcileHandler
+}
+
+// Server type of HTTP server.
+type Server struct {
+        handlers Handlers
+}
+
+// NewServer initialize server with config and handler as parameters.
+func NewServer(handlers Handlers) *Server <span class="cov8" title="1">{
+        return &amp;Server{
+                handlers: handlers,
+        }
+}</span>
+
+// NewMux builds the HTTP routes for the service. Exposed separately from
+// Run so tests can exercise handlers with httptest.NewServer without
+// binding a real port.
+func (srv *Server) NewMux() *http.ServeMux <span class="cov8" title="1">{
+        mux := http.NewServeMux()
+        mux.HandleFunc("/healthz", handleHealthz)
+        mux.HandleFunc("/reconcile", srv.handlers.Reconcile.HandleReconcile)
+        return mux
+}</span>
+
+// Run starts the HTTP server and blocks until it exits.
+func (srv *Server) Run(addr string) error <span class="cov0" title="0">{
+        log.Printf("reconciliation server listening on %s", addr)
+        return http.ListenAndServe(addr, srv.NewMux())
+}</span>
+
+func handleHealthz(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        w.WriteHeader(http.StatusOK)
+        _, _ = w.Write([]byte("ok"))
+}</span>
+</pre>
+		
+		<pre class="file" id="file23" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: server.go
+
+// Package http is a generated GoMock package.
+package http
+
+import (
+        http "net/http"
+        reflect "reflect"
+
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockreconcileHandler is a mock of reconcileHandler interface.
+type MockreconcileHandler struct {
+        ctrl     *gomock.Controller
+        recorder *MockreconcileHandlerMockRecorder
+}
+
+// MockreconcileHandlerMockRecorder is the mock recorder for MockreconcileHandler.
+type MockreconcileHandlerMockRecorder struct {
+        mock *MockreconcileHandler
+}
+
+// NewMockreconcileHandler creates a new mock instance.
+func NewMockreconcileHandler(ctrl *gomock.Controller) *MockreconcileHandler <span class="cov8" title="1">{
+        mock := &amp;MockreconcileHandler{ctrl: ctrl}
+        mock.recorder = &amp;MockreconcileHandlerMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockreconcileHandler) EXPECT() *MockreconcileHandlerMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// HandleReconcile mocks base method.
+func (m *MockreconcileHandler) HandleReconcile(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        m.ctrl.Call(m, "HandleReconcile", w, r)
+}</span>
+
+// HandleReconcile indicates an expected call of HandleReconcile.
+func (mr *MockreconcileHandlerMockRecorder) HandleReconcile(w, r interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "HandleReconcile", reflect.TypeOf((*MockreconcileHandler)(nil).HandleReconcile), w, r)
+}</span>
+
+// HandleReconcileImport mocks base method.
+func (m *MockreconcileHandler) HandleReconcileImport(w http.ResponseWriter, r *http.Request) <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        m.ctrl.Call(m, "HandleReconcileImport", w, r)
+}</span>
+
+// HandleReconcileImport indicates an expected call of HandleReconcileImport.
+func (mr *MockreconcileHandlerMockRecorder) HandleReconcileImport(w, r interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "HandleReconcileImport", reflect.TypeOf((*MockreconcileHandler)(nil).HandleReconcileImport), w, r)
+}</span>
+</pre>
+		
+		<pre class="file" id="file24" style="display: none">package bank
+
+import (
+        "context"
+        "fmt"
+        "strings"
+)
+
+const defaultPath = "testdata/"
+
+func (svc *Service) GetBankStatementHistory(ctx context.Context, request []BankStatementParams) ([]BankStatement, error) <span class="cov8" title="1">{
+        var bankStmts []BankStatement
+        for _, b := range request </span><span class="cov8" title="1">{
+                path := b.Path
+                if path == "" </span><span class="cov8" title="1">{
+                        path = defaultPath + fmt.Sprintf("bank_%s.csv", strings.ToLower(b.BankName))
+                }</span>
+                <span class="cov8" title="1">stmts, err := svc.resource.ParseBankStatementFromCSV(ctx, path, b.BankName, b.Start, b.End)
+                if err != nil </span><span class="cov8" title="1">{
+                        return []BankStatement{}, fmt.Errorf("parsing bank statement %s: %w", path, err)
+                }</span>
+
+                <span class="cov8" title="1">svcStmts := make([]BankStatement, 0, len(stmts))
+                for _, s := range stmts </span><span class="cov8" title="1">{
+                        svcStmts = append(svcStmts, BankStatement{
+                                UniqueID: s.UniqueID,
+                                Amount:   s.Amount,
+                                Date:     s.Date,
+                                Bank:     s.Bank,
+                        })
+                }</span>
+                <span class="cov8" title="1">bankStmts = append(bankStmts, svcStmts...)</span>
+        }
+        <span class="cov8" title="1">return bankStmts, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file25" style="display: none">package bank
+
+import (
+        "context"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+)
+
+//go:generate mockgen -source=resource.go -destination=resource_mock.go -package=bank
+
+// csvRepoProvider is the interface that wraps the csv repository methods needed for resource object.
+type csvRepoProvider interface {
+        // ParseBankStatement reads one bank statement CSV file. bankName tags every
+        // record so unmatched results can later be grouped per bank, since the
+        // service supports reconciling against several banks in a single run.
+        ParseBankStatement(ctx context.Context, path string, bankName string, start, end time.Time) ([]csv.BankStatement, error)
+}
+
+// Resource type of a action resource.
+// It contains the repositories used for this resource.
+// It encapsulates methods from repository and translates it into service.
+type Resource struct {
+        csvRepo csvRepoProvider
+}
+
+// NewResource initiates new bank resource.
+func NewResource(csvRepo csvRepoProvider) *Resource <span class="cov8" title="1">{
+        return &amp;Resource{
+                csvRepo: csvRepo,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file26" style="display: none">package bank
+
+import (
+        "context"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+)
+
+// ParseBankStatementFromCSV resource function for repository implementation.
+// it accept path, bankName, start, end time.Time as parameter.
+// it returns []csv.BankStatement and error.
+// if error is nil, then the function is successful.
+// if error is not nil, then the function is failed.
+func (svc *Resource) ParseBankStatementFromCSV(ctx context.Context, path string, bankName string, start, end time.Time) ([]csv.BankStatement, error) <span class="cov8" title="1">{
+        result, err := svc.csvRepo.ParseBankStatement(ctx, path, bankName, start, end)
+        if err != nil </span><span class="cov8" title="1">{
+                return []csv.BankStatement{}, err
+        }</span>
+        <span class="cov8" title="1">return result, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file27" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: resource.go
+
+// Package bank is a generated GoMock package.
+package bank
+
+import (
+        context "context"
+        reflect "reflect"
+        time "time"
+
+        csv "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockcsvRepoProvider is a mock of csvRepoProvider interface.
+type MockcsvRepoProvider struct {
+        ctrl     *gomock.Controller
+        recorder *MockcsvRepoProviderMockRecorder
+}
+
+// MockcsvRepoProviderMockRecorder is the mock recorder for MockcsvRepoProvider.
+type MockcsvRepoProviderMockRecorder struct {
+        mock *MockcsvRepoProvider
+}
+
+// NewMockcsvRepoProvider creates a new mock instance.
+func NewMockcsvRepoProvider(ctrl *gomock.Controller) *MockcsvRepoProvider <span class="cov8" title="1">{
+        mock := &amp;MockcsvRepoProvider{ctrl: ctrl}
+        mock.recorder = &amp;MockcsvRepoProviderMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockcsvRepoProvider) EXPECT() *MockcsvRepoProviderMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// ParseBankStatement mocks base method.
+func (m *MockcsvRepoProvider) ParseBankStatement(ctx context.Context, path, bankName string, start, end time.Time) ([]csv.BankStatement, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "ParseBankStatement", ctx, path, bankName, start, end)
+        ret0, _ := ret[0].([]csv.BankStatement)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// ParseBankStatement indicates an expected call of ParseBankStatement.
+func (mr *MockcsvRepoProviderMockRecorder) ParseBankStatement(ctx, path, bankName, start, end interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ParseBankStatement", reflect.TypeOf((*MockcsvRepoProvider)(nil).ParseBankStatement), ctx, path, bankName, start, end)
+}</span>
+</pre>
+		
+		<pre class="file" id="file28" style="display: none">package bank
+
+import (
+        "context"
+        "time"
+
+        csv "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+)
+
+//go:generate mockgen -source=service.go -destination=service_mock.go -package=bank
+
+// resourceProvider provides resource methods needed for chatchannel service.
+type resourceProvider interface {
+        // ParseBankStatement parses bank statement CSV file.
+        ParseBankStatementFromCSV(ctx context.Context, path string, bankName string, start, end time.Time) ([]csv.BankStatement, error)
+}
+
+// Service type of bank service.
+type Service struct {
+        resource resourceProvider
+}
+
+// NewService instantiates bank service.
+func NewService(resource resourceProvider) *Service <span class="cov8" title="1">{
+        return &amp;Service{resource: resource}
+}</span>
+</pre>
+		
+		<pre class="file" id="file29" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: service.go
+
+// Package bank is a generated GoMock package.
+package bank
+
+import (
+        context "context"
+        reflect "reflect"
+        time "time"
+
+        csv "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockresourceProvider is a mock of resourceProvider interface.
+type MockresourceProvider struct {
+        ctrl     *gomock.Controller
+        recorder *MockresourceProviderMockRecorder
+}
+
+// MockresourceProviderMockRecorder is the mock recorder for MockresourceProvider.
+type MockresourceProviderMockRecorder struct {
+        mock *MockresourceProvider
+}
+
+// NewMockresourceProvider creates a new mock instance.
+func NewMockresourceProvider(ctrl *gomock.Controller) *MockresourceProvider <span class="cov8" title="1">{
+        mock := &amp;MockresourceProvider{ctrl: ctrl}
+        mock.recorder = &amp;MockresourceProviderMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockresourceProvider) EXPECT() *MockresourceProviderMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// ParseBankStatementFromCSV mocks base method.
+func (m *MockresourceProvider) ParseBankStatementFromCSV(ctx context.Context, path, bankName string, start, end time.Time) ([]csv.BankStatement, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "ParseBankStatementFromCSV", ctx, path, bankName, start, end)
+        ret0, _ := ret[0].([]csv.BankStatement)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// ParseBankStatementFromCSV indicates an expected call of ParseBankStatementFromCSV.
+func (mr *MockresourceProviderMockRecorder) ParseBankStatementFromCSV(ctx, path, bankName, start, end interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ParseBankStatementFromCSV", reflect.TypeOf((*MockresourceProvider)(nil).ParseBankStatementFromCSV), ctx, path, bankName, start, end)
+}</span>
+</pre>
+		
+		<pre class="file" id="file30" style="display: none">package transaction
+
+import (
+        "context"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+)
+
+//go:generate mockgen -source=resource.go -destination=resource_mock.go -package=transaction
+
+// csvRepoProvider is the interface that wraps the csv repository methods needed for resource object.
+type csvRepoProvider interface {
+        // ParseSystemTransactions reads one bank statement CSV file. bankName tags every
+        // record so unmatched results can later be grouped per bank, since the
+        // service supports reconciling against several banks in a single run.
+        ParseSystemTransactions(ctx context.Context, path string, start, end time.Time) ([]csv.Transaction, error)
+}
+
+// Resource type of a transaction resource.
+// It contains the repositories used for this resource.
+// It encapsulates methods from repository and translates it into service.
+type Resource struct {
+        csvRepo csvRepoProvider
+}
+
+// NewResource initiates new transaction resource.
+func NewResource(csvRepo csvRepoProvider) *Resource <span class="cov8" title="1">{
+        return &amp;Resource{
+                csvRepo: csvRepo,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file31" style="display: none">package transaction
+
+import (
+        "context"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+)
+
+// ParseSystemTransactionsFromCSV delegates to the underlying csv repository.
+// It parses system transactions CSV file.
+// It accept path, start, and end time as parameters.
+// It returns parsed system transactions.
+// If parsing failed, it returns error.
+// If parsing is successful, it returns slice of csv.Transaction.
+func (svc *Resource) ParseSystemTransactionsFromCSV(ctx context.Context, path string, start, end time.Time) ([]csv.Transaction, error) <span class="cov8" title="1">{
+        result, err := svc.csvRepo.ParseSystemTransactions(ctx, path, start, end)
+        if err != nil </span><span class="cov8" title="1">{
+                return []csv.Transaction{}, err
+        }</span>
+        <span class="cov8" title="1">return result, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file32" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: resource.go
+
+// Package transaction is a generated GoMock package.
+package transaction
+
+import (
+        context "context"
+        reflect "reflect"
+        time "time"
+
+        csv "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockcsvRepoProvider is a mock of csvRepoProvider interface.
+type MockcsvRepoProvider struct {
+        ctrl     *gomock.Controller
+        recorder *MockcsvRepoProviderMockRecorder
+}
+
+// MockcsvRepoProviderMockRecorder is the mock recorder for MockcsvRepoProvider.
+type MockcsvRepoProviderMockRecorder struct {
+        mock *MockcsvRepoProvider
+}
+
+// NewMockcsvRepoProvider creates a new mock instance.
+func NewMockcsvRepoProvider(ctrl *gomock.Controller) *MockcsvRepoProvider <span class="cov8" title="1">{
+        mock := &amp;MockcsvRepoProvider{ctrl: ctrl}
+        mock.recorder = &amp;MockcsvRepoProviderMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockcsvRepoProvider) EXPECT() *MockcsvRepoProviderMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// ParseSystemTransactions mocks base method.
+func (m *MockcsvRepoProvider) ParseSystemTransactions(ctx context.Context, path string, start, end time.Time) ([]csv.Transaction, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "ParseSystemTransactions", ctx, path, start, end)
+        ret0, _ := ret[0].([]csv.Transaction)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// ParseSystemTransactions indicates an expected call of ParseSystemTransactions.
+func (mr *MockcsvRepoProviderMockRecorder) ParseSystemTransactions(ctx, path, start, end interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ParseSystemTransactions", reflect.TypeOf((*MockcsvRepoProvider)(nil).ParseSystemTransactions), ctx, path, start, end)
+}</span>
+</pre>
+		
+		<pre class="file" id="file33" style="display: none">package transaction
+
+import (
+        "context"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+)
+
+//go:generate mockgen -source=service.go -destination=service_mock.go -package=transaction
+
+// resourceProvider provides resource methods needed for transaction service.
+type resourceProvider interface {
+        // ParseSystemTransactionsFromCSV parses system transactions CSV file.
+        ParseSystemTransactionsFromCSV(ctx context.Context, path string, start, end time.Time) ([]csv.Transaction, error)
+}
+
+// Service type of transaction service.
+type Service struct {
+        resource resourceProvider
+}
+
+// NewService instantiates transaction service.
+func NewService(resource resourceProvider) *Service <span class="cov8" title="1">{
+        return &amp;Service{resource: resource}
+}</span>
+</pre>
+		
+		<pre class="file" id="file34" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: service.go
+
+// Package transaction is a generated GoMock package.
+package transaction
+
+import (
+        context "context"
+        reflect "reflect"
+        time "time"
+
+        csv "github.com/ferdianexe/simple-statement-reconciliation/internal/repository/csv"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockresourceProvider is a mock of resourceProvider interface.
+type MockresourceProvider struct {
+        ctrl     *gomock.Controller
+        recorder *MockresourceProviderMockRecorder
+}
+
+// MockresourceProviderMockRecorder is the mock recorder for MockresourceProvider.
+type MockresourceProviderMockRecorder struct {
+        mock *MockresourceProvider
+}
+
+// NewMockresourceProvider creates a new mock instance.
+func NewMockresourceProvider(ctrl *gomock.Controller) *MockresourceProvider <span class="cov8" title="1">{
+        mock := &amp;MockresourceProvider{ctrl: ctrl}
+        mock.recorder = &amp;MockresourceProviderMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockresourceProvider) EXPECT() *MockresourceProviderMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// ParseSystemTransactionsFromCSV mocks base method.
+func (m *MockresourceProvider) ParseSystemTransactionsFromCSV(ctx context.Context, path string, start, end time.Time) ([]csv.Transaction, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "ParseSystemTransactionsFromCSV", ctx, path, start, end)
+        ret0, _ := ret[0].([]csv.Transaction)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// ParseSystemTransactionsFromCSV indicates an expected call of ParseSystemTransactionsFromCSV.
+func (mr *MockresourceProviderMockRecorder) ParseSystemTransactionsFromCSV(ctx, path, start, end interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ParseSystemTransactionsFromCSV", reflect.TypeOf((*MockresourceProvider)(nil).ParseSystemTransactionsFromCSV), ctx, path, start, end)
+}</span>
+</pre>
+		
+		<pre class="file" id="file35" style="display: none">package transaction
+
+import (
+        "context"
+        "fmt"
+)
+
+// GetUserTransactionHistory loads the internal system's transaction
+// history for request.SysPath within [StartDate, EndDate], and
+// translates it into the service-layer Transaction type.
+func (svc *Service) GetUserTransactionHistory(ctx context.Context, request TransactionHistoryParams) ([]Transaction, error) <span class="cov8" title="1">{
+        sysTrx, err := svc.resource.ParseSystemTransactionsFromCSV(ctx, request.SysPath, request.StartDate, request.EndDate)
+        if err != nil </span><span class="cov8" title="1">{
+                return []Transaction{}, fmt.Errorf("parsing system transactions: %w", err)
+        }</span>
+
+        <span class="cov8" title="1">svcTrx := make([]Transaction, 0, len(sysTrx))
+        for _, t := range sysTrx </span><span class="cov8" title="1">{
+                svcTrx = append(svcTrx, Transaction{
+                        TrxID:           t.TrxID,
+                        Amount:          t.Amount,
+                        Type:            TrxType(t.Type),
+                        TransactionTime: t.TransactionTime,
+                })
+        }</span>
+        <span class="cov8" title="1">return svcTrx, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file36" style="display: none">package reconcile
+
+import (
+        "time"
+)
+
+// TrxType represents the direction of a transaction.
+// moves to constant package
+type TrxType string
+
+const (
+        Debit  TrxType = "DEBIT"
+        Credit TrxType = "CREDIT"
+)
+
+// reconcileRequest is the expected POST /reconcile body. File paths are
+// used rather than uploaded file contents to keep this take-home-sized;
+// see README for the multipart-upload extension this would need in a
+// real deployment.
+type ReconcileRequest struct {
+        SysPath string
+        Banks   []BankFileRequest
+        Start   time.Time // YYYY-MM-DD
+        End     time.Time // YYYY-MM-DD
+}
+
+// BankFileRequest
+type BankFileRequest struct {
+        Name string
+        Path string
+}
+
+// bankEntry wraps a bank statement record with matched-state tracked
+// during the algorithm run.
+type bankEntry struct {
+        stmt    BankStatement
+        matched bool
+}
+
+// BankStatement is a record from an external bank statement file.
+// Amount can be negative (debit) or positive (credit) depending on the
+// bank's own convention; Bank identifies which source file it came from
+// since the service can reconcile against multiple banks at once.
+type BankStatement struct {
+        UniqueID string
+        Amount   float64
+        Date     time.Time
+        Bank     string
+}
+
+// AbsAmount returns the unsigned amount of the bank record.
+func (b BankStatement) AbsAmount() float64 <span class="cov8" title="1">{
+        if b.Amount &lt; 0 </span><span class="cov8" title="1">{
+                return -b.Amount
+        }</span>
+        <span class="cov0" title="0">return b.Amount</span>
+}
+
+// InferredType derives DEBIT/CREDIT from the sign of the bank amount.
+// Assumption: negative amount = money leaving the account = DEBIT,
+// positive amount = money entering the account = CREDIT. This mirrors
+// the system Transaction.Type semantics so the two sources can be
+// matched on a common (date, type) key.
+func (b BankStatement) InferredType() TrxType <span class="cov8" title="1">{
+        if b.Amount &lt; 0 </span><span class="cov8" title="1">{
+                return Debit
+        }</span>
+        <span class="cov0" title="0">return Credit</span>
+}
+
+// MatchedPair is a system transaction successfully paired with a bank
+// statement record. Discrepancy is the absolute difference in amount
+// between the two sides - per the problem statement, discrepancies only
+// occur in amount, so date/type are treated as reliable matching keys
+// and amount is compared only *after* a match is found.
+type MatchedPair struct {
+        System      SystemTransaction
+        Bank        BankStatement
+        Discrepancy float64
+}
+
+// SystemTransaction is a record from Amartha's internal system.
+type SystemTransaction struct {
+        TrxID           string
+        Amount          float64 // always positive; direction is carried by Type
+        Type            TrxType
+        TransactionTime time.Time
+}
+
+// UnmatchedByBank groups unmatched bank statement records by their
+// originating bank, as required by the output spec.
+type UnmatchedByBank struct {
+        Bank    string
+        Records []BankStatement
+}
+
+// ReconcileSummary is the full output of a reconciliation run.
+type ReconcileSummary struct {
+        TotalProcessed       int
+        TotalMatched         int
+        TotalUnmatched       int
+        TotalUnmatchedAmount int
+        TotalUnmatchedBank   int
+        TotalUnmatchedSystem int
+        TotalDiscrepancy     float64
+
+        Matched         []MatchedPair
+        AmountMismatch  []MatchedPair
+        UnmatchedSystem []SystemTransaction
+        UnmatchedBank   []UnmatchedByBank
+}
+</pre>
+		
+		<pre class="file" id="file37" style="display: none">package reconcile
+
+import (
+        "context"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction"
+)
+
+//go:generate mockgen -source=usecase.go -destination=usecase_mock.go -package=reconcile
+
+// reconcileUsecaseManager provides the required action usecase methods.
+type bankServiceManager interface {
+        // Reconcile performs reconciliation process.
+        GetBankStatementHistory(ctx context.Context, request []bank.BankStatementParams) ([]bank.BankStatement, error)
+}
+
+// transactionServiceManager provides the required action usecase methods.
+type transactionServiceManager interface {
+        // Reconcile performs reconciliation process.
+        GetUserTransactionHistory(ctx context.Context, request transaction.TransactionHistoryParams) ([]transaction.Transaction, error)
+}
+
+// infraProvider provides the infrastructure primitives this usecase
+// needs for date-range logic, injected so it can be mocked in tests
+// rather than this layer importing gotime directly.
+type infraProvider interface {
+        // TimeTruncateToDay strips the time-of-day component from t.
+        TimeTruncateToDay(t time.Time) time.Time
+        // TimeInRange reports whether d's date falls within [start, end] inclusive.
+        TimeInRange(d, start, end time.Time) bool
+}
+
+// Usecase type of usecase reconcile.
+type Usecase struct {
+        bank        bankServiceManager
+        transaction transactionServiceManager
+        infra       infraProvider
+}
+
+// NewUsecase instantiates reconcile handler.
+func NewUsecase(bank bankServiceManager, transaction transactionServiceManager, infra infraProvider) *Usecase <span class="cov8" title="1">{
+        return &amp;Usecase{
+                bank:        bank,
+                transaction: transaction,
+                infra:       infra,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file38" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: usecase.go
+
+// Package reconcile is a generated GoMock package.
+package reconcile
+
+import (
+        context "context"
+        reflect "reflect"
+        time "time"
+
+        bank "github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank"
+        transaction "github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockbankServiceManager is a mock of bankServiceManager interface.
+type MockbankServiceManager struct {
+        ctrl     *gomock.Controller
+        recorder *MockbankServiceManagerMockRecorder
+}
+
+// MockbankServiceManagerMockRecorder is the mock recorder for MockbankServiceManager.
+type MockbankServiceManagerMockRecorder struct {
+        mock *MockbankServiceManager
+}
+
+// NewMockbankServiceManager creates a new mock instance.
+func NewMockbankServiceManager(ctrl *gomock.Controller) *MockbankServiceManager <span class="cov8" title="1">{
+        mock := &amp;MockbankServiceManager{ctrl: ctrl}
+        mock.recorder = &amp;MockbankServiceManagerMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockbankServiceManager) EXPECT() *MockbankServiceManagerMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// GetBankStatementHistory mocks base method.
+func (m *MockbankServiceManager) GetBankStatementHistory(ctx context.Context, request []bank.BankStatementParams) ([]bank.BankStatement, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "GetBankStatementHistory", ctx, request)
+        ret0, _ := ret[0].([]bank.BankStatement)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// GetBankStatementHistory indicates an expected call of GetBankStatementHistory.
+func (mr *MockbankServiceManagerMockRecorder) GetBankStatementHistory(ctx, request interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBankStatementHistory", reflect.TypeOf((*MockbankServiceManager)(nil).GetBankStatementHistory), ctx, request)
+}</span>
+
+// MocktransactionServiceManager is a mock of transactionServiceManager interface.
+type MocktransactionServiceManager struct {
+        ctrl     *gomock.Controller
+        recorder *MocktransactionServiceManagerMockRecorder
+}
+
+// MocktransactionServiceManagerMockRecorder is the mock recorder for MocktransactionServiceManager.
+type MocktransactionServiceManagerMockRecorder struct {
+        mock *MocktransactionServiceManager
+}
+
+// NewMocktransactionServiceManager creates a new mock instance.
+func NewMocktransactionServiceManager(ctrl *gomock.Controller) *MocktransactionServiceManager <span class="cov8" title="1">{
+        mock := &amp;MocktransactionServiceManager{ctrl: ctrl}
+        mock.recorder = &amp;MocktransactionServiceManagerMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MocktransactionServiceManager) EXPECT() *MocktransactionServiceManagerMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// GetUserTransactionHistory mocks base method.
+func (m *MocktransactionServiceManager) GetUserTransactionHistory(ctx context.Context, request transaction.TransactionHistoryParams) ([]transaction.Transaction, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "GetUserTransactionHistory", ctx, request)
+        ret0, _ := ret[0].([]transaction.Transaction)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// GetUserTransactionHistory indicates an expected call of GetUserTransactionHistory.
+func (mr *MocktransactionServiceManagerMockRecorder) GetUserTransactionHistory(ctx, request interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserTransactionHistory", reflect.TypeOf((*MocktransactionServiceManager)(nil).GetUserTransactionHistory), ctx, request)
+}</span>
+
+// MockinfraProvider is a mock of infraProvider interface.
+type MockinfraProvider struct {
+        ctrl     *gomock.Controller
+        recorder *MockinfraProviderMockRecorder
+}
+
+// MockinfraProviderMockRecorder is the mock recorder for MockinfraProvider.
+type MockinfraProviderMockRecorder struct {
+        mock *MockinfraProvider
+}
+
+// NewMockinfraProvider creates a new mock instance.
+func NewMockinfraProvider(ctrl *gomock.Controller) *MockinfraProvider <span class="cov8" title="1">{
+        mock := &amp;MockinfraProvider{ctrl: ctrl}
+        mock.recorder = &amp;MockinfraProviderMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockinfraProvider) EXPECT() *MockinfraProviderMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// TimeInRange mocks base method.
+func (m *MockinfraProvider) TimeInRange(d, start, end time.Time) bool <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "TimeInRange", d, start, end)
+        ret0, _ := ret[0].(bool)
+        return ret0
+}</span>
+
+// TimeInRange indicates an expected call of TimeInRange.
+func (mr *MockinfraProviderMockRecorder) TimeInRange(d, start, end interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TimeInRange", reflect.TypeOf((*MockinfraProvider)(nil).TimeInRange), d, start, end)
+}</span>
+
+// TimeTruncateToDay mocks base method.
+func (m *MockinfraProvider) TimeTruncateToDay(t time.Time) time.Time <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "TimeTruncateToDay", t)
+        ret0, _ := ret[0].(time.Time)
+        return ret0
+}</span>
+
+// TimeTruncateToDay indicates an expected call of TimeTruncateToDay.
+func (mr *MockinfraProviderMockRecorder) TimeTruncateToDay(t interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TimeTruncateToDay", reflect.TypeOf((*MockinfraProvider)(nil).TimeTruncateToDay), t)
+}</span>
+</pre>
+		
+		<pre class="file" id="file39" style="display: none">package reconcile
+
+import (
+        "context"
+        "fmt"
+        "math"
+        "sort"
+        "time"
+
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/bank"
+        "github.com/ferdianexe/simple-statement-reconciliation/internal/service/transaction"
+)
+
+// Reconcile loads the system transaction history and bank statement
+// history required by request, then matches them via doReconcile.
+func (uc *Usecase) Reconcile(ctx context.Context, request ReconcileRequest) (ReconcileSummary, error) <span class="cov8" title="1">{
+        banks := make([]bank.BankStatementParams, 0, len(request.Banks))
+        for _, b := range request.Banks </span><span class="cov8" title="1">{
+                banks = append(banks, bank.BankStatementParams{
+                        BankName: b.Name,
+                        Path:     b.Path,
+                        Start:    request.Start,
+                        End:      request.End,
+                })
+        }</span>
+
+        <span class="cov8" title="1">userTrx, err := uc.transaction.GetUserTransactionHistory(ctx, transaction.TransactionHistoryParams{SysPath: request.SysPath})
+        if err != nil </span><span class="cov8" title="1">{
+                return ReconcileSummary{}, fmt.Errorf("parsing user transactions: %w", err)
+        }</span>
+
+        <span class="cov8" title="1">ucUserTrx := make([]SystemTransaction, 0, len(userTrx))
+        for _, t := range userTrx </span><span class="cov8" title="1">{
+                ucUserTrx = append(ucUserTrx, SystemTransaction{
+                        TransactionTime: t.TransactionTime,
+                        Type:            TrxType(t.Type),
+                        Amount:          t.Amount,
+                        TrxID:           t.TrxID,
+                })
+        }</span>
+
+        <span class="cov8" title="1">bankStatements, err := uc.bank.GetBankStatementHistory(ctx, banks)
+        if err != nil </span><span class="cov8" title="1">{
+                return ReconcileSummary{}, fmt.Errorf("parsing bank statements: %w", err)
+        }</span>
+
+        <span class="cov8" title="1">ucBankStatement := make([]BankStatement, 0, len(bankStatements))
+        for _, b := range bankStatements </span><span class="cov8" title="1">{
+                ucBankStatement = append(ucBankStatement, BankStatement{
+                        Date:     b.Date,
+                        Amount:   b.Amount,
+                        UniqueID: b.UniqueID,
+                        Bank:     b.Bank,
+                })
+        }</span>
+
+        <span class="cov8" title="1">return uc.doReconcile(ucUserTrx, ucBankStatement, request.Start, request.End), nil</span>
+}
+
+// ReconcileFromRecords reconciles already-parsed system transactions and
+// bank statement records directly, filtering out records outside the start/end range.
+func (uc *Usecase) ReconcileFromRecords(ctx context.Context, sysTrx []SystemTransaction, bankStmts []BankStatement, start, end time.Time) (ReconcileSummary, error) <span class="cov0" title="0">{
+        return uc.doReconcile(sysTrx, bankStmts, start, end), nil
+}</span>
+
+// key builds the (date, type) bucket key. Both sides are normalized to a
+// day-granularity date, since system transactions carry a full
+// timestamp but bank statements only carry a date.
+func key(date time.Time, t TrxType) string <span class="cov8" title="1">{
+        return date.Format("2006-01-02") + "|" + string(t)
+}</span>
+
+// doReconcile matches system transactions against bank statement records
+// within [start, end] (inclusive) and returns a full summary.
+func (uc *Usecase) doReconcile(sysTrx []SystemTransaction, bankStmts []BankStatement, start, end time.Time) ReconcileSummary <span class="cov8" title="1">{
+        start = uc.infra.TimeTruncateToDay(start)
+        end = uc.infra.TimeTruncateToDay(end)
+
+        // Filter system transactions to the start/end range.
+        filteredSys := make([]SystemTransaction, 0, len(sysTrx))
+        for _, t := range sysTrx </span><span class="cov8" title="1">{
+                if uc.infra.TimeInRange(t.TransactionTime, start, end) </span><span class="cov8" title="1">{
+                        filteredSys = append(filteredSys, t)
+                }</span>
+        }
+
+        // sort first to make sure its ordered.
+        <span class="cov8" title="1">sort.Slice(filteredSys, func(i, j int) bool </span><span class="cov0" title="0">{
+                return filteredSys[i].TransactionTime.Before(filteredSys[j].TransactionTime)
+        }</span>)
+
+        // bank statement need to be filtered to the start/end range. for safeguard purpose
+        // we dont need to sort order this, since reconcile will search a while based on key (time, inferred type)
+        // next we will search the closest different amount bank statement with current system transaction
+        <span class="cov8" title="1">buckets := make(map[string][]*bankEntry)
+        for _, b := range bankStmts </span><span class="cov8" title="1">{
+                if !uc.infra.TimeInRange(b.Date, start, end) </span><span class="cov0" title="0">{
+                        continue</span>
+                }
+                <span class="cov8" title="1">k := key(b.Date, b.InferredType())
+                buckets[k] = append(buckets[k], &amp;bankEntry{stmt: b})</span>
+        }
+
+        <span class="cov8" title="1">var matched []MatchedPair
+        var amountMismatch []MatchedPair
+        var unmatchedSys []SystemTransaction
+        var totalDiscrepancy float64
+
+        for _, s := range filteredSys </span><span class="cov8" title="1">{
+                k := key(s.TransactionTime, s.Type)
+                candidates := buckets[k]
+
+                best := -1
+                bestDiff := math.MaxFloat64
+                for i, c := range candidates </span><span class="cov8" title="1">{
+                        if c.matched </span><span class="cov0" title="0">{
+                                continue</span>
+                        }
+                        // only compare absolute amount and select the closest amount
+                        <span class="cov8" title="1">diff := math.Abs(s.Amount - c.stmt.AbsAmount())
+                        if diff &lt; bestDiff </span><span class="cov8" title="1">{
+                                bestDiff = diff
+                                best = i
+                        }</span> else<span class="cov0" title="0"> if diff == 0 </span><span class="cov0" title="0">{
+                                // absolute match
+                                bestDiff = diff
+                                best = i
+                                break</span>
+                        }
+                }
+
+                <span class="cov8" title="1">if best == -1 </span><span class="cov8" title="1">{
+                        unmatchedSys = append(unmatchedSys, s)
+                        continue</span>
+                }
+
+                <span class="cov8" title="1">if bestDiff == 0 </span><span class="cov8" title="1">{
+                        // absolute match
+                        candidates[best].matched = true
+                        matched = append(matched, MatchedPair{
+                                System: s,
+                                Bank:   candidates[best].stmt,
+                        })
+                }</span> else<span class="cov8" title="1"> {
+                        // amount mismatch
+                        candidates[best].matched = true
+                        disc := bestDiff
+                        totalDiscrepancy += disc
+                        amountMismatch = append(amountMismatch, MatchedPair{
+                                System:      s,
+                                Bank:        candidates[best].stmt,
+                                Discrepancy: disc,
+                        })
+                }</span>
+
+        }
+
+        // Collect remaining unmatched bank records, grouped by bank.
+        <span class="cov8" title="1">unmatchedByBank := map[string][]BankStatement{}
+        bankOrder := make([]string, 0)
+        totalBankCount := 0
+        for _, entries := range buckets </span><span class="cov8" title="1">{
+                for _, e := range entries </span><span class="cov8" title="1">{
+                        totalBankCount++
+                        if e.matched </span><span class="cov8" title="1">{
+                                continue</span>
+                        }
+                        <span class="cov0" title="0">if _, ok := unmatchedByBank[e.stmt.Bank]; !ok </span><span class="cov0" title="0">{
+                                bankOrder = append(bankOrder, e.stmt.Bank)
+                        }</span>
+                        <span class="cov0" title="0">unmatchedByBank[e.stmt.Bank] = append(unmatchedByBank[e.stmt.Bank], e.stmt)</span>
+                }
+        }
+        <span class="cov8" title="1">sort.Strings(bankOrder)
+
+        var unmatchedBank []UnmatchedByBank
+        for _, bank := range bankOrder </span><span class="cov0" title="0">{
+                records := unmatchedByBank[bank]
+                sort.Slice(records, func(i, j int) bool </span><span class="cov0" title="0">{ return records[i].Date.Before(records[j].Date) }</span>)
+                <span class="cov0" title="0">unmatchedBank = append(unmatchedBank, UnmatchedByBank{Bank: bank, Records: records})</span>
+        }
+
+        <span class="cov8" title="1">totalUnmatchedBank := 0
+        for _, g := range unmatchedBank </span><span class="cov0" title="0">{
+                totalUnmatchedBank += len(g.Records)
+        }</span>
+
+        <span class="cov8" title="1">return ReconcileSummary{
+                TotalProcessed:       len(filteredSys) + totalBankCount,
+                TotalMatched:         len(matched),
+                TotalUnmatched:       len(unmatchedSys) + totalUnmatchedBank + len(amountMismatch),
+                TotalUnmatchedAmount: len(amountMismatch),
+                TotalUnmatchedBank:   totalUnmatchedBank,
+                TotalUnmatchedSystem: len(unmatchedSys),
+                TotalDiscrepancy:     totalDiscrepancy,
+                Matched:              matched,
+                AmountMismatch:       amountMismatch,
+                UnmatchedSystem:      unmatchedSys,
+                UnmatchedBank:        unmatchedBank,
+        }</span>
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>

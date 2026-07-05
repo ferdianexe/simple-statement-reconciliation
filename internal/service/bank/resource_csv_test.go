@@ -40,7 +40,7 @@ func TestResource_ParseBankStatement(t *testing.T) {
 				path:     "testdata/bank_bca.csv",
 				bankName: "BCA",
 			},
-			want:    nil,
+			want:    []csv.BankStatement{},
 			wantErr: assert.AnError,
 		},
 		{

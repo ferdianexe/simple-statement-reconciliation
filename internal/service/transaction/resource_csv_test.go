@@ -40,7 +40,7 @@ func TestResource_ParseSystemTransactionsFromCSV(t *testing.T) {
 				startDate: time.Time{},
 				endDate:   time.Time{},
 			},
-			want:    nil,
+			want:    []csv.Transaction{},
 			wantErr: assert.AnError,
 		},
 		{
